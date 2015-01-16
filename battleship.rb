@@ -1,4 +1,5 @@
-require './ship'
+require './ship.rb'
+require './board.rb'
 
 # class Ship
 #   def initialize(length)
