@@ -33,4 +33,7 @@ class Ship
     boxes_in_common = ship_2_coords & @coordinates_covered
     !(boxes_in_common.empty?)
   end
+  def fire_at(x, y)
+    @coordinates_covered.include?([x, y])
+  end
 end
