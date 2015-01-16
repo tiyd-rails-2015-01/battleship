@@ -3,17 +3,20 @@ require './board.rb'
 
 
 # board debug -----------------------
-board = Board.new()
-board.place_ship(Ship.new(4), 3, 3, true)
-board.has_ship_on?(2, 3)
-board.has_ship_on?(3, 3)
-board.has_ship_on?(4, 3)
-board.has_ship_on?(6, 3)
-board.has_ship_on?(7, 3)
-board.has_ship_on?(5, 4)
-
-board.debug_board
-
+# board = Board.new()
+#
+#
+# board.debug_board
+#
+# board.place_ship(Ship.new(2), 3, 6, true)
+# board.place_ship(Ship.new(3), 7, 4, true)
+# board.place_ship(Ship.new(3), 4, 8, true)
+# board.place_ship(Ship.new(4), 1, 1, true)
+# board.place_ship(Ship.new(5), 6, 2, false)
+#
+# board.debug_board
+#
+# board.display
 
 # ship debug -----------------------
 # ship = Ship.new(4)
