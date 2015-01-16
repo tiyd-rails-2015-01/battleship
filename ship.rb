@@ -4,10 +4,15 @@ class Ship
     @length = length
     @coordinates = []
     @placed = false
+    @hit_points = @length
   end
 
   def length
     @length
+  end
+
+  def coordinates
+    @coordinates
   end
 
   def place(column, row, across)
@@ -34,12 +39,24 @@ class Ship
     end
   end
 
-  def overlaps_with?(ship)
-    if (@coordinates).empty?
-      return true
-    else
+  def overlaps_with?(other_ship)
+    if (@coordinates & other_ship.coordinates).empty?
       return false
+    else
+      return true
     end
   end
 
+  def fire_at(x, y)
+    if @coordinates.include?([x, y])
+      @hit_points -= 1
+      return true
+    end
+  end
+
+  def sunk?
+    if @hit_points == 0
+      return true
+    end
+  end
 end
