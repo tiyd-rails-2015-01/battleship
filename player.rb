@@ -32,33 +32,48 @@ class Player
     return @board.ships
   end
 
+  def display_game_status
+    @board.display
+  end
+
 end
 
 class HumanPlayer < Player
   def initialize( name = "Dave" )
     @name = name
     @board = Board.new
+    # @target_board = Board.new
   end
 
   def place_ships( shipSizes )
 
-    xy = 0 # arbitrary, fix later
-
     shipSizes.each do |size|
+      shipHasBeenPlaced = false
       puts "#{@name}, where would you like to place a ship of length #{size}?"
-      coord = get_user_input
-      x = @board.x_of(coord)
-      y = @board.y_of(coord)
 
-      puts "Across or Down?"
-      boolInput = get_user_input
-      isHorizontal = boolInput.upcase.include?("ACROSS") #checks for "across", default to down
+      until( shipHasBeenPlaced )
+        coord = get_user_input
+        x = @board.x_of(coord)
+        y = @board.y_of(coord)
 
-      ship = Ship.new(size)
-      @board.place_ship( ship, x, y, isHorizontal )
+        puts "Across or Down?"
+        boolInput = get_user_input
+        isHorizontal = boolInput.upcase.include?("ACROSS") #checks for "across", default to down
+
+        ship = Ship.new(size)
+        shipHasBeenPlaced = @board.place_ship( ship, x, y, isHorizontal )
+
+        unless shipHasBeenPlaced
+          puts "Unfortunately, that ship overlaps with one of your other ships.  Please try again."
+        end
+      end
     end
 
     return true #arbitrary. fix later
+  end
+
+  def display_game_status
+    @board.display
   end
 end
 

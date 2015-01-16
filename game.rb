@@ -1,9 +1,9 @@
 class Game
 
-  def initialize( player, computer)
+  def initialize( player, computer, ship_sizes = [2,3,3,4,5])
     @player = player
     @computer = computer
-    @ship_sizes = [2,3,3,4,5]
+    @ship_sizes = ship_sizes
   end
 
   def welcome
@@ -11,14 +11,16 @@ class Game
   end
 
   def place_ships
-    # @player.board.ships.each do |ship|
-    #   puts "#{@player.name}, where would you like to place a ship of length #{ship.length}?\nAcross or Down?\n"
-    # end
-    # puts "DEBUG: board.ships.length: #{@player.board.ships.length}"
-    #
-    # puts "HAL 9000 has placed his ships.\n"
     @player.place_ships(@ship_sizes)
     @computer.place_ships(@ship_sizes)
+  end
+
+  def take_turn
+    puts "Miss!" #arbitrary
+  end
+
+  def play
+    #arbitrary
   end
 
 end

@@ -5,7 +5,8 @@ require './game.rb'
 
 
 # player debug ------------------------
-# player = HumanPlayer.new
+ # player = HumanPlayer.new("Alice")
+ # player.place_ships([2,3])
 # player.place_ships([2,5])
 
 
