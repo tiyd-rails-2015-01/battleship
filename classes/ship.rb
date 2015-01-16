@@ -10,33 +10,28 @@ class Ship
 
   def place(x, y, across)
 
-    @covered_x_coordinates = (x..x+@length-1)
-    @covered_y_coordinates = (y..y+@length-1)
-
-    if across
-      @covered_x_coordinates.to_a.each do |coordinates|
-        @covered_coordinates << [coordinates, y]
+    if @covered_coordinates.empty?
+      @length.times do
+        @covered_coordinates << [x, y]
+        if across
+          x = x+1
+        else
+          y = y+1
+        end
       end
-
-      else
-
-      @covered_y_coordinates.to_a.each do |coordinates|
-        @covered_coordinates << [x, coordinates]
-      end
-    end
-
-    if @covered_x_coordinates.include?(x+1)
-      across = true
-    end
-
-    if @covered_y_coordinates.include?(y+1)
-      across = true
+      return true
+    else
+      return false
     end
   end
 
   def covers?(x, y)
-    if @covered_coordinates.include?([x, y])
-      true
+    covered_space = [x, y]
+    @covered_coordinates.each do |coordinates|
+      if coordinates == covered_space
+        return true
+      end
     end
+    return false
   end
 end
