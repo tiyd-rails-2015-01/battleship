@@ -18,7 +18,6 @@ class Ship
   def place(column, row, across)
     if @placed == false
       @placed = true
-
       if across == true
         @length.times do |i|
           @coordinates << [column + i, row]
