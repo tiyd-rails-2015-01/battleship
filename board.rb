@@ -25,8 +25,16 @@ class Board
     return true
   end
   def fire_at(x, y)
-    if @has_ships == nil
+    if @has_ships.empty?
       return false
+    else
+      @has_ships.each do |potato|
+         if potato.covers?(x, y)
+           return true
+         else
+           return false
+         end
+       end
     end
   end
 
