@@ -4,6 +4,11 @@ require './player.rb'
 require './game.rb'
 
 
+# player debug ------------------------
+# player = HumanPlayer.new
+# player.place_ships([2,5])
+
+
 # board debug -----------------------
 # board = Board.new()
 #

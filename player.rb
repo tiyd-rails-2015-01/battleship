@@ -1,5 +1,9 @@
 require './board.rb'
 
+def get_user_input
+  gets.chomp
+end
+
 class Player
 
   attr_reader :name
@@ -34,6 +38,27 @@ class HumanPlayer < Player
   def initialize( name = "Dave" )
     @name = name
     @board = Board.new
+  end
+
+  def place_ships( shipSizes )
+
+    xy = 0 # arbitrary, fix later
+
+    shipSizes.each do |size|
+      puts "#{@name}, where would you like to place a ship of length #{size}?"
+      coord = get_user_input
+      x = @board.x_of(coord)
+      y = @board.y_of(coord)
+
+      puts "Across or Down?"
+      boolInput = get_user_input
+      isHorizontal = boolInput.upcase.include?("ACROSS") #checks for "across", default to down
+
+      ship = Ship.new(size)
+      @board.place_ship( ship, x, y, isHorizontal )
+    end
+
+    return true #arbitrary. fix later
   end
 end
 
