@@ -12,22 +12,23 @@ class Board
     return covered
   end
   def place_ship(ship, x, y, across)
-      ship.place(x, y, across)
-      @has_ships << ship
+    ship.place(x, y, across)
+    @has_ships.each do |ship|
+      if ship.overlaps_with?(ship)
+        return false
+      end
+    end
+    @has_ships << ship
+    ship.show_coords.each do |coord|
+      #@target_grid[coord[1]-1][coord[0]-1] = 1
+    end
+    return true
+  end
+  def fire_at(x, y)
+    if @has_ships == nil
+      return false
+    end
   end
 
-end
 
-# @ships = all_ships
-# covered = false
-# ships.each do |ship|
-# if ship.covers(x, y)
-#   covered = true
-#   break
-# end
-# end
-# if !covered
-#   actually place
-#
-# else false
-# end
+end
