@@ -1,6 +1,7 @@
 class Ship
   def initialize(length)
     @length = length
+    @hit_points = @length
     @covered_coordinates = []
   end
 
@@ -45,7 +46,16 @@ class Ship
   end
 
   def fire_at(x, y)
-    @covered_coordinates.include?([x, y])
+    if @covered_coordinates.include?([x, y])
+      @hit_points = @hit_points - 1
+      return true
+    end
+  end
+
+  def sunk?
+    if @hit_points == 0
+      return true
+    end
   end
 
 end
