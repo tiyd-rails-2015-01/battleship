@@ -7,31 +7,31 @@ class Board
   end
 
   def place_ship(ship, column, row, across)
-    has_ship_on = false
-    if @ships.empty?
-      ship.place(column, row, across)
-      @ship = ship
-      @ships << ship
-    else
-      @ships.each do |all_ship|
-        if all_ship.overlaps_with?(@ship)
-          has_ship_on = true
-        end
-      end
-      if !has_ship_on
-        @ships << ship
+    ship.place(column, row, across)
+    conflict = false
+    @ships.each do |s|
+      if s.overlaps_with?(ship)
+        conflict = true
       end
     end
-    #return has_ship_on
-end
+    if !conflict
+      @ships << ship
+      return true
+    else
+      return false
+    end
+  end
 
   def has_ship_on?(column, row)
     has_ship_on = false
-    if @ship && @ship.covers?(column, row)
-      has_ship_on = true
+    @ships.each do |s|
+      if s.covers?(column, row)
+        has_ship_on = true
+      end
     end
     return has_ship_on
   end
+
   def fire_at (column, row)
     hit = false
     if @ships.empty?
@@ -40,11 +40,19 @@ end
       @ships.each do |ship|
         if ship.covers?(column, row)
           hit = true
-          temp_hits = Array.new(column, row)
-          @hits << temp_hits
+          temp_hits = Array.new
+          temp_hits << [column, row]
+            if @hits.include?(temp_hits)
+              return false
+            else
+              @hits << temp_hits
+            end
+          #puts "#{@hits}"
         end
         return hit
       end
     end
   end
+
+
 end
