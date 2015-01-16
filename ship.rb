@@ -10,6 +10,7 @@ class Ship
   end
 
   def place(x, y, across)
+    @across= across
     if
       @covered_coordinates== []
         if across
@@ -27,8 +28,6 @@ class Ship
   end
 
   def covers?(x, y)
-    @x=x
-    @y=y
     if @covered_coordinates.include?([x,y])
       true
     end
