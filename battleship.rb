@@ -21,15 +21,3 @@ class Ship
 
 end
 # ship.covers?(1,1, false)
-class Board
-
-end
-class Player
-
-end
-class HumanPlayer
-
-end
-class ComputerPlayer
-
-end
