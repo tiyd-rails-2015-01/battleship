@@ -2,7 +2,6 @@ require './ship'
 class Board
   def initialize
     @ship
-    @placed
     @fleet = []
   end
 
@@ -19,7 +18,7 @@ class Board
     ship.place(x_axis, y_axis, across)
     conflict = false
     @fleet.each do |ship|
-      if ship.overlaps?(ship)
+      if ship.overlaps_with?(ship)
         conflict = true
       end
     end
