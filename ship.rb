@@ -25,8 +25,12 @@ class Ship
   def covers?(x, y)
     @coordinates_covered.include?([x, y])
   end
-  def overlaps_with
+  def show_coords
+    return @coordinates_covered
+  end
+  def overlaps_with?(other_ship)
+    ship_2_coords = other_ship.show_coords
+    boxes_in_common = ship_2_coords & @coordinates_covered
+    !(boxes_in_common.empty?)
   end
 end
-
-#5, 4, 3, 3, 2
