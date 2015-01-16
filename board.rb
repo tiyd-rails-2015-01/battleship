@@ -1,6 +1,7 @@
 class Board
   def initialize()
     @has_ships = []
+    @has_been_shot = []
   end
   def has_ship_on?(x, y)
     covered = false
@@ -25,11 +26,12 @@ class Board
     return true
   end
   def fire_at(x, y)
-    if @has_ships.empty?
+    if @has_ships.empty? || @has_been_shot.include?([x, y])
       return false
     else
       @has_ships.each do |potato|
-         if potato.covers?(x, y)
+         if potato.fire_at(x, y)
+           @has_been_shot << [x, y]
            return true
          else
            return false
