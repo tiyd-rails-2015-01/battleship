@@ -1,6 +1,9 @@
 require './ship.rb'
 
 class Board
+
+  attr_reader :ships
+
   def initialize
     @ships = [] #array of Ship objects
 
@@ -52,15 +55,15 @@ class Board
     yIsInBounds = (y >= 0) && (y <=10)
 
     @ships.each do |ship|
-      if ship.fire_at(x,y) && @target_grid[y][x] == 0 && xIsInBounds && yIsInBounds
-        @target_grid[y][x] = 2 # 2 indicates a hit, also, counter intuitive! do I have to reverse these??
+      if ship.fire_at(x,y) && @target_grid[y-1][x-1] == 1 && xIsInBounds && yIsInBounds
+        @target_grid[y-1][x-1] = 2 # 2 indicates a hit, also, counter intuitive! do I have to reverse these??
         return true
       end
     end
-
-    if xIsInBounds && yIsInBounds && @target_grid[y][x] == 0
-      @target_grid[y][x] = 1 # 1 indicates a miss
-    end
+    #
+    # if xIsInBounds && yIsInBounds && @target_grid[y][x] == 0
+    #   @target_grid[y][x] = 1 # 1 indicates a miss
+    # end
 
     return false
   end
@@ -101,6 +104,77 @@ class Board
     # puts "J |   |   |   |   |   |   |   |   |   |   |"
     puts "  -----------------------------------------"
 
+  end
+
+  def sunk?
+    allShipsSunk = false
+
+    @ships.each do |ship|
+      unless ship.sunk?
+        return false
+      end
+    end
+
+    if( @ships.length > 0 )
+      return true
+    else
+      return false
+    end
+  end
+
+  def x_of( string )
+    if string.upcase.include?("1") && !string.include?("10")
+      return 1
+    elsif string.upcase.include?("2")
+      return 2
+    elsif string.upcase.include?("3")
+      return 3
+    elsif string.upcase.include?("4")
+      return 4
+    elsif string.upcase.include?("5")
+      return 5
+    elsif string.upcase.include?("6")
+      return 6
+    elsif string.upcase.include?("7")
+      return 7
+    elsif string.upcase.include?("8")
+      return 8
+    elsif string.upcase.include?("9")
+      return 9
+    elsif string.upcase.include?("10")
+      return 10
+    end
+
+    #should never happen!
+    return nil
+  end
+
+  def y_of( string )
+    # a = 1, b = 2, c = 3 ...
+    if string.upcase.include?("A")
+      return 1
+    elsif string.upcase.include?("B")
+      return 2
+    elsif string.upcase.include?("C")
+      return 3
+    elsif string.upcase.include?("D")
+      return 4
+    elsif string.upcase.include?("E")
+      return 5
+    elsif string.upcase.include?("F")
+      return 6
+    elsif string.upcase.include?("G")
+      return 7
+    elsif string.upcase.include?("H")
+      return 8
+    elsif string.upcase.include?("I")
+      return 9
+    elsif string.upcase.include?("J")
+      return 10
+    end
+
+    #should never happen!
+    return nil
   end
 
   def debug_board
