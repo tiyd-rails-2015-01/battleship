@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './battleship'
+  require './battleship'
 
 $mock_inputs = []
 def get_user_input
