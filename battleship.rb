@@ -1,11 +1,7 @@
-class Ship
-  def initialize(type)
-    @type = type
-  end
-end
+require './ship.rb'
 
-carrier = Ship.new("carrier")
-battleship = Ship.new("battleship")
-cruiser = Ship.new("cruiser")
-submarine = Ship.new("submarine")
-destroyer = Ship.new("destroyer")
+carrier = Ship.new(5)
+battleship = Ship.new(4)
+cruiser = Ship.new(3)
+submarine = Ship.new(3)
+destroyer = Ship.new(2)
