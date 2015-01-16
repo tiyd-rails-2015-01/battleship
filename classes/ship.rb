@@ -47,7 +47,7 @@ class Ship
 
   def fire_at(x, y)
     if @covered_coordinates.include?([x, y])
-      @hit_points = @hit_points - 1
+      @hit_points -= 1
       return true
     end
   end
