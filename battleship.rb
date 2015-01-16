@@ -2,6 +2,7 @@ class Ship
 
   def initialize(length)
     @length = length
+    @hit_points = @length
     @coord = []
     @placed = false
   end
@@ -22,8 +23,8 @@ class Ship
         end # do
       end # if horiz
     @placed = true
-    end # if @place == false
-  end # def place
+    end
+  end
 
   def covers?(x, y)
     @coord.include? [x, y]
@@ -32,8 +33,6 @@ class Ship
   def overlaps_with?(ship)
     overlap = false
     @coord.each do |co|
-      # x = coordinates[0]
-      # y = coordinates[1]
       if ship.covers?(co[0], co[1])
         overlap = true
       end
@@ -41,5 +40,24 @@ class Ship
     return overlap
   end
 
+  def fire_at(x, y)
+    if @coord.include?([x, y])
+      @hit_points -= 1
+      return true
+    end
+  end
 
+  def sunk?
+    if @hit_points == 0
+      return true
+    end
+  end
+
+end
+
+
+class Board
+  def has_ship_on?(x, y)
+    @coord
+  end
 end
