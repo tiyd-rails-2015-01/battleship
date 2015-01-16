@@ -3,6 +3,7 @@ class Ship
     @length = length
     @coordinates = []
     @placed = false
+    @hit_counter = 0
   end
   def length
     return @length
@@ -39,8 +40,15 @@ class Ship
     hit = false
     if @coordinates.include? [x_axis, y_axis]
       hit = true
+      @hit_counter += 1
     end
     return hit
   end
-
+  def sunk?
+    sunk = false
+    if @hit_counter == @length
+      sunk = true
+    end
+    return sunk
+  end
 end
