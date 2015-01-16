@@ -6,22 +6,46 @@ class Board
 
   def place_ship(ship, x, y, across)
     ship.place(x, y, across)
-    @ship = ship
-    @ships << ship
-  end
-
-  def has_ship_on?(x, y)
-    if @ship && @ship.covers?(x,y)
+    conflict = false
+    @ships.each do |s|
+      if s.overlaps_with?(ship)
+        conflict = true
+      end
+    end
+    if !conflict
+      @ships << ship
       return true
-    else false
+    else
+      return false
     end
   end
 
 
-
-  def fire_at
-
+  def has_ship_on?(x, y)
+    has_ship_on = false
+    @ships.each do |s|
+      if s.covers?(x,y)
+        has_ship_on = true
+      end
+    end
+    return has_ship_on
   end
+
+
+
+  def fire_at(x, y)
+    # hit = false
+    # @ships.each do |s|
+    #   s.fire_at(x, y)
+    #
+    # end
+    # return false
+    has_ship_on?(x,y)
+  end
+
+
+
+
 
   def sunk
 
