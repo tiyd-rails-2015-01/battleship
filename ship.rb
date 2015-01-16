@@ -3,6 +3,8 @@ class Ship
     @length = length
     @coordinates_covered = []
     @has_been_placed = false
+    @is_sunk = false
+    @red_pegs = []
   end
   def length
     return @length
@@ -32,8 +34,24 @@ class Ship
     ship_2_coords = other_ship.show_coords
     boxes_in_common = ship_2_coords & @coordinates_covered
     !(boxes_in_common.empty?)
+    # @coordinates_covered.each do |potato|
+    #   if other_ship.covers?(potato[0], potato[1])
+    #     return true
+    #   end
+    # end
+    # return false
+    # this is the way jess did it.  doesn't require show_coords which could be a security issue in other applications
   end
   def fire_at(x, y)
-    @coordinates_covered.include?([x, y])
+    if @coordinates_covered.include?([x, y])
+      @red_pegs << [x, y]
+    else
+      return false
+    end
+  end
+  def sunk?
+    if @coordinates_covered == @red_pegs
+      return true
+    end
   end
 end
