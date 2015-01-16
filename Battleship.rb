@@ -3,7 +3,7 @@ require './player.rb'
 require './ship.rb'
 require './board.rb'
 
-carrier = Ship.new(5)
+#carrier = Ship.new(5)
 # battleship = Ship.new#("Battleship",4,0)
 # cruiser = Ship.new#("Cruiser",5,0)
 # submarine = Ship.new#("Submarine",5,0)

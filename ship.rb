@@ -1,6 +1,6 @@
 class Ship
 
-  attr_reader :length
+  attr_reader :length, :locations
 
   def initialize (length, name=nil)
     @length = length
