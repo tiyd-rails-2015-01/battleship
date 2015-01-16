@@ -49,6 +49,8 @@ class Ship
     if @covered_coordinates.include?([x, y])
       @hit_points -= 1
       return true
+    else
+      return false
     end
   end
 
