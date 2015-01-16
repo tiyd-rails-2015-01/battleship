@@ -36,10 +36,11 @@ class Ship
     return overlap
   end
   def fire_at(x_axis, y_axis)
-    hit = true
-    
-
+    hit = false
+    if @coordinates.include? [x_axis, y_axis]
+      hit = true
+    end
+    return hit
   end
 
 end
-# ship.covers?(1,1, false)
