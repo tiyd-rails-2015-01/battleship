@@ -34,4 +34,18 @@ class Ship
     end
     return false
   end
+
+  def overlaps_with?(ship_name)
+    @covered_coordinates.each do |cs|
+      if ship_name.covers?(cs[0], cs[1])
+        return true
+      end
+    end
+    return false
+  end
+
+  def fire_at(x, y)
+    @covered_coordinates.include?([x, y])
+  end
+
 end
