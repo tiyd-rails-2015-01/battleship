@@ -14,12 +14,13 @@ class Ship
 
   def place(x, y, isHorizontal)
     if @coords.length == 0
-      @coords << [x,y]
+      # @coords << [x,y]
 
       val = isHorizontal ? x : y
 
-      (@size-1).times do |i|
-        @coords << (isHorizontal ? [val+i+1,y] : [x,val+i+1])
+
+      (@size).times do |i|
+        @coords << (isHorizontal ? [val+i,y] : [x,val+i])
       end
       return true
     else
