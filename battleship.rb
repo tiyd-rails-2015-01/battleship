@@ -27,20 +27,18 @@ class Ship
 
   def covers?(x, y)
     @coord.include? [x, y]
-    @x = x
-    @y = y
   end
 
   def overlaps_with?(ship)
     overlap = false
-    @coord.each do |coordinates|
-      @x = coordinates[0]
-      @y = coordinates[1]
-      if ship.covers?[x, y]
+    @coord.each do |co|
+      # x = coordinates[0]
+      # y = coordinates[1]
+      if ship.covers?(co[0], co[1])
         overlap = true
       end
     end
-
+    return overlap
   end
 
 
