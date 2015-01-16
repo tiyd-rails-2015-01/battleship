@@ -5,29 +5,25 @@ class Board
     @hits= []
   end
   def place_ship(ship,x,y, across)
-    covered= false
-    if @fleet.empty?
-      ship.place(x,y, across)
-      @ship=ship
-      @fleet<< ship
-    else
+    ship.place(x,y, across)
+    conflict= false
       @fleet.each do |existing_ship|
-        if existing_ship.overlaps_with?(@ship)
-          covered= true
+        if existing_ship.overlaps_with?(ship)
+          conflict= true
         end
       end
-      if !covered
+      if !conflict
         @fleet<< ship
       end
-    end
-
   end
 
   def has_ship_on?(x,y)
     covered= false
-    if @ship && @ship.covers?(x,y)
+    @fleet.each do |s|
+      if s.covers?(x,y)
       covered= true
     end
+  end
     return covered
   end
 
@@ -38,13 +34,20 @@ class Board
     else
       @fleet.each do |ship|
       if ship.covers?(x,y)
-        temp_hits = [x,y]
         hit = true
-        @hits << temp_hits
+        temp_hits= Array.new
+        temp_hits << [x,y]
+          if @hits.include?(temp_hits)
+            return false
+          else
+            @hits << temp_hits
+          end
       end
       return hit
     end
     end
   end
 
+  def display
+  end
 end
