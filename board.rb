@@ -28,6 +28,19 @@ class Board
     @ships << ship
   end
 
+  def fire_at(x, y)
+    if @ships.empty?
+      return false
+    else
+      @ships.each do |ship|
+          if ship.covers?(x, y)
+          return true
+        else
+          return false
+        end
+      end
+    end
+  end
 
 
 end
