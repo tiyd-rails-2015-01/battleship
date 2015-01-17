@@ -44,24 +44,14 @@ class Board
     puts"    1   2   3   4   5   6   7   8   9   10"
     puts"  -----------------------------------------"
     counter.each do |square|
-      y_row = puts square
       now_letter = letters[square-1]
+      box = " "#square-1
       print "#{now_letter}"
+      print " #{box} | #{box} | #{box} | #{box} | #{box} | #{box} | #{box} | #{box} | #{box} | #{box} |"
+      print "\n"
     end
-    puts"A |   |   |   |   |   |   |   |   |   |   |"
-    puts"B |   |   |   |   |   |   |   |   |   |   |"
-    puts"C |   |   |   |   |   |   |   |   |   |   |"
-    puts"D |   |   |   |   |   |   |   |   |   |   |"
-    puts"E |   |   |   |   |   |   |   |   |   |   |"
-    puts"F |   |   |   |   |   |   |   |   |   |   |"
-    puts"G |   |   |   |   |   |   |   |   |   |   |"
-    puts"H |   |   |   |   |   |   |   |   |   |   |"
-    puts"I |   |   |   |   |   |   |   |   |   |   |"
-    puts"J |   |   |   |   |   |   |   |   |   |   |"
+    #puts"A |   |   |   |   |   |   |   |   |   |   |"
     puts"  -----------------------------------------"
-  end
-  def new
-    board.display
   end
 
 end

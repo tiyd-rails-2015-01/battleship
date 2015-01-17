@@ -41,17 +41,19 @@ class Board
   #   end
   # end
   def display
-  counter = (1..10).to_a
-  letters = ("A |".."J |").to_a
-  puts"    1   2   3   4   5   6   7   8   9   10"
-  puts"  -----------------------------------------"
-  counter.each do |square|
-    now_letter = letters[square-1]
-    print "#{now_letter}" + "\n"
-  end
-  #puts"A |   |   |   |   |   |   |   |   |   |   |"
-
-  puts"  -----------------------------------------"
+    counter = (1..10).to_a
+    letters = ("A |".."J |").to_a
+    puts"    1   2   3   4   5   6   7   8   9   10"
+    puts"  -----------------------------------------"
+    counter.each do |square|
+      now_letter = letters[square-1]
+      box = " "#square-1
+      print "#{now_letter}"
+      print " #{box} | #{box} | #{box} | #{box} | #{box} | #{box} | #{box} | #{box} | #{box} | #{box} |"
+      print "\n"
+    end
+    #puts"A |   |   |   |   |   |   |   |   |   |   |"
+    puts"  -----------------------------------------"
   end
 end
 board = Board.new
