@@ -5,6 +5,7 @@ class Board
     @fleet = []
     @placed = []
 
+
   end
 
   def has_ship_on?(x, y)
@@ -28,5 +29,14 @@ class Board
     @fleet << ship
   end
 
+
+  def fire_at(x, y)
+    @fleet.each do |ship|
+      if ship.fire_at(x,y)
+        return true
+      end
+    end
+    return false
+  end
 
 end
