@@ -1,6 +1,7 @@
 class Board
   def initialize
     @ships = []
+    @hits = []
   end
 
 
@@ -34,23 +35,24 @@ class Board
 
 
   def fire_at(x, y)
-    # hit = false
-    # @ships.each do |s|
-    #   s.fire_at(x, y)
-    #
-    # end
-    # return false
-    has_ship_on?(x,y)
+      if @ships.empty? || @hits.include?([x, y])
+        return false
+      else
+        @ships.each do |ship|
+          if ship.fire_at(x, y)
+            @hits << [x, y]
+        return true
+      else
+        return false
+        end
+      end
+        end
   end
 
 
+  def display_header
+    puts ""
 
-
-
-  def sunk
-
-  end
-end
 
 
 attacker_board = Board.new
