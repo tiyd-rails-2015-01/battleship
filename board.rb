@@ -51,6 +51,9 @@ class Board
       if ship.covers?(1, 1)
         a << "| O "
         covered = true
+      elsif @hits.include?([1, 1])
+        a << "| X "
+        covered = true
       end
     end
     if covered == false
@@ -422,7 +425,10 @@ class Board
     end
     covered = false
     @ships.each do |ship|
-      if ship.covers?(7, 4)
+      if @hits.include?([7, 4])
+      a << "| X "
+      covered = true
+      elsif ship.covers?(7, 4)
         a << "| O "
         covered = true
       end
@@ -528,6 +534,9 @@ class Board
     @ships.each do |ship|
       if ship.covers?(7, 5)
         a << "| O "
+        covered = true
+      elsif @hits.include?([7, 5])
+        a << "| X "
         covered = true
       end
     end
