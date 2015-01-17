@@ -4,6 +4,7 @@ class Board
   def initialize
     @ships = []
     @hits = []
+
   end
 
   def place_ship(ship, column, row, across)
@@ -32,7 +33,7 @@ class Board
     return has_ship_on
   end
 
-  def fire_at (column, row)
+  def fire_at (column, row) #change to track misses
     hit = false
     if @ships.empty?
       false
@@ -40,8 +41,7 @@ class Board
       @ships.each do |ship|
         if ship.covers?(column, row)
           hit = true
-          temp_hits = Array.new
-          temp_hits << [column, row]
+          temp_hits = [column, row]
             if @hits.include?(temp_hits)
               return false
             else
@@ -49,10 +49,56 @@ class Board
             end
           #puts "#{@hits}"
         end
+        #puts "hits array is#{@hits}~~~~~"
         return hit
       end
     end
   end
 
 
+  def display_header
+    puts "    1   2   3   4   5   6   7   8   9   10"
+    puts "  -----------------------------------------"
+  end
+
+  def display
+    letters = ["A","B","C","D","E","F","G","H","I","J"]
+    self.display_header
+    (1..10).each do |r|
+      output_row = "#{letters[r-1]} |"
+      (1..10).each do |c|
+        if @hits.include?([c,r])
+          output_row += " X |"
+        elsif self.has_ship_on?(c,r)
+          output_row += " O |"
+        else
+          output_row += "   |"
+        end
+      end
+      puts output_row
+    end
+
+    self.display_bottom
+
+  end
+
+  def display_bottom
+    puts "  -----------------------------------------"
+  end
+
+  def sunk?
+    if @hits.empty?
+      return false
+    else
+      @hits.length == self.ship_points
+    end
+  end
+
+  def ship_points
+    ship_length = 0
+    @ships.each do |i|
+      ship_length += i.length
+    end
+    return ship_length
+  end
 end

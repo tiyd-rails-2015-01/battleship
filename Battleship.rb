@@ -1,7 +1,9 @@
 require './game.rb'
-require './player.rb'
+require './Player.rb'
 require './ship.rb'
 require './board.rb'
+require './HumanPlayer.rb'
+require './ComputerPlayer.rb'
 
 #carrier = Ship.new(5)
 # battleship = Ship.new#("Battleship",4,0)

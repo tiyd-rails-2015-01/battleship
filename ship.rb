@@ -42,7 +42,7 @@ class Ship
     return do_they_actually_overlap
   end
 
-  def fire_at(column, row)
+  def fire_at(column, row) 
     hit = false
     if @locations.include?([column , row])
       hit = true

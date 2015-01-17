@@ -113,9 +113,6 @@ class BattleshipTest < Minitest::Test
     refute board.place_ship(Ship.new(4), 1, 3, true)
     refute board.place_ship(Ship.new(4), 4, 3, true)
     refute board.place_ship(Ship.new(4), 4, 2, false)
-
-    assert board.place_ship(Ship.new(4), 100, 100, true)
-
   end
 
   def test_12_misses_on_empty_board
