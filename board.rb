@@ -4,6 +4,7 @@ class Board
     @ship
     @fleet = []
     @shots_fired = []
+    @display
   end
 
   def has_ship_on?(x_axis, y_axis)
@@ -31,7 +32,6 @@ class Board
     end
   end
   def fire_at(x_axis, y_axis)
-    # hit = false
     if @fleet.empty?
       return false
     end
@@ -49,4 +49,70 @@ class Board
       end
     end
   end
+
+  def display
+    top_two_lines
+    empty_board
+    bottom_line
+  end
+  def top_two_lines
+    puts "    1   2   3   4   5   6   7   8   9   10"
+    puts "  -----------------------------------------"
+  end
+
+  def empty_board
+    puts "A |   |   |   |   |   |   |   |   |   |   |"
+    puts "B |   |   |   |   |   |   |   |   |   |   |"
+    puts "C |   |   |   |   |   |   |   |   |   |   |"
+    puts "D |   |   |   |   |   |   |   |   |   |   |"
+    puts "E |   |   |   |   |   |   |   |   |   |   |"
+    puts "F |   |   |   |   |   |   |   |   |   |   |"
+    puts "G |   |   |   |   |   |   |   |   |   |   |"
+    puts "H |   |   |   |   |   |   |   |   |   |   |"
+    puts "I |   |   |   |   |   |   |   |   |   |   |"
+    puts "J |   |   |   |   |   |   |   |   |   |   |"
+  end
+
+  def bottom_line
+    puts "  -----------------------------------------"
+  end
+  def full_board
+    (1..10).each do |display|
+      header = ["A","B","C","D","E","F","G","H","I","J"]
+      header.each do |letter|
+        puts "#{letter} |   |   |   |   |   |   |   |   |   |   |"
+        letter
+      end
+      #self.full_board
+    end
+  end
+  # def full_board
+  #   @fleet
+  #
+  #   fire at = (1,1) a_1 = ship puts
+  #
+  #
+  #
+  #
+  #   puts "A |#{a_1}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|"
+  #   puts "B |#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|"
+  #   puts "C |#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|"
+  #   puts "D |#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|"
+  #   puts "E |#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|"
+  #   puts "F |#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|"
+  #   puts "G |#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|"
+  #   puts "H |#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|"
+  #   puts "I |#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|"
+  #   puts "J |#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|"
+  #
+  #
+  #
+  #
+  #
+  # end
+
+
+
+
+
 end
