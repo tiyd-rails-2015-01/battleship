@@ -40,14 +40,14 @@ class Board
     end
   end
 
-def display_header
-  puts "    1   2   3   4   5   6   7   8   9   10"
-  puts "  -----------------------------------------"
-end
+  def display_header
+    puts "    1   2   3   4   5   6   7   8   9   10"
+    puts "  -----------------------------------------"
+  end
 
-def display_bottom
-  puts "  -----------------------------------------"
-end
+  def display_bottom
+    puts "  -----------------------------------------"
+  end
 
   def display
     letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
@@ -67,6 +67,19 @@ end
       puts output
     end
     self.display_bottom
+  end
+
+  def sunk?
+    if @ships.empty?
+      return false
+    end
+    @ships.each do |ship|
+      if ship.sunk? == false
+        return false
+      else
+        return true
+      end
+    end
   end
 
 end
