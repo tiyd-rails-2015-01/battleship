@@ -3,6 +3,7 @@ require './ship.rb'
 class Board
   def initialize
     @fleet = []
+    @placed = []
 
   end
 
@@ -16,9 +17,16 @@ class Board
     return ship_on
   end
 
+
   def place_ship(ship, x, y, direction)
     ship.place(x, y, direction)
+    @fleet.each do |s|
+      if s.overlaps_with?(ship)
+        return false
+      end
+    end
     @fleet << ship
-    return true
   end
+
+
 end
