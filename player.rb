@@ -42,6 +42,7 @@ class HumanPlayer < Player
   def initialize( name = "Dave" )
     @name = name
     @board = Board.new
+    @target_board = Board.new( true )
     # @target_board = Board.new
   end
 
@@ -73,6 +74,8 @@ class HumanPlayer < Player
   end
 
   def display_game_status
+    @target_board.display
+    puts ""
     @board.display
   end
 end
@@ -82,6 +85,6 @@ class ComputerPlayer < Player
   def initialize
     @name = "HAL 9000"
     @board = Board.new
-
+    @target_board = Board.new( true )
   end
 end
