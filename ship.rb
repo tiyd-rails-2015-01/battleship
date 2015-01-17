@@ -4,7 +4,7 @@ class Ship
     @length = length
     @covered_coordinates = []
     @placed = false
-    @ship_hits = 0
+    @ship_hits = []
   end
 
   def length
@@ -40,14 +40,14 @@ class Ship
         do_they_overlap = true
       end
     end
-      return do_they_overlap
+    return do_they_overlap
   end
 
   def fire_at(x, y)
     is_ship_hit = false
     if @covered_coordinates.include? [x, y]
         is_ship_hit = true
-        @ship_hits += 1
+        @ship_hits << [x, y]
     end
     return is_ship_hit
 
@@ -55,7 +55,7 @@ class Ship
 
   def sunk?
     ship_sunk = false
-    if @ship_hits == @length
+    if @ship_hits == @covered_coordinates
       sunk = true
     end
     return sunk
