@@ -3,6 +3,7 @@ class Board
   def initialize
     @ship
     @fleet = []
+    @board = []
   end
 
   def has_ship_on?(x_axis, y_axis)
@@ -29,5 +30,30 @@ class Board
       return false
     end
   end
-
+  def fire_at(x_axis, y_axis)
+    hit = false
+    attack = (x_axis, y_axis)
+    @fleet.each do |attack|
+      x_axis = place_ship[0]
+      y_axis = place_ship[1]
+      if place_ship.include?(ship)
+        hit = true
+      end
+    end
+    if !hit
+      @board << attack
+      return
+    else
+      return true
+    end
+  end
 end
+
+
+# ship.place(x_axis, y_axis, across)
+# hit = false
+# @fleet.each do |ship|
+#   if ship.place_ship?(x_axis, y_axis)
+#     hit = true
+#   end
+# end
