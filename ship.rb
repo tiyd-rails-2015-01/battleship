@@ -43,6 +43,18 @@ class Ship
         return true
       end
   end
+
+  def fire_at(x,y)
+    if @locations.include?([x,y])
+      return true
+    else
+      return false
+    end
+  end
+
+
+
+
 end
 
 #ship = Ship.new(4)
