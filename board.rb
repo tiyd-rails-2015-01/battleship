@@ -4,6 +4,7 @@ class Board
   def initialize
     @fleet = []
     @placed = []
+    @shots_taken = []
   end
 
   def has_ship_on?(x, y)
@@ -27,9 +28,14 @@ class Board
   end
 
   def fire_at(x, y)
-    @fleet.each do |ship|
-      if ship.fire_at(x, y)
-        return true
+    if @shots_taken.include?([x, y])
+      return false
+    else
+      @shots_taken << [x, y]
+      @fleet.each do |ship|
+        if ship.fire_at(x, y)
+          return true
+        end
       end
     end
     return false
