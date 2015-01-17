@@ -306,7 +306,7 @@ J |   |   |   |   |   |   |   |   |   |   |
     $mock_inputs << "A4"
     $mock_inputs << "Down"
     assert_output("Dave, where would you like to place a ship of length 2?\nAcross or Down?\n"+
-                  "Dave, where would you like to place a ship of length 5?\nAcross or Down?\n") do
+    "Dave, where would you like to place a ship of length 5?\nAcross or Down?\n") do
       assert player.place_ships([2, 5])
     end
     assert_equal 2, player.ships.length
@@ -370,11 +370,11 @@ J |   |   |   |   |   |   |   |   |   |   |
     $mock_inputs << "A9"
     $mock_inputs << "Down"
     assert_output("Frank, where would you like to place a ship of length 2?\nAcross or Down?\n"+
-                  "Frank, where would you like to place a ship of length 3?\nAcross or Down?\n"+
-                  "Frank, where would you like to place a ship of length 3?\nAcross or Down?\n"+
-                  "Frank, where would you like to place a ship of length 4?\nAcross or Down?\n"+
-                  "Frank, where would you like to place a ship of length 5?\nAcross or Down?\n"+
-                  "HAL 9000 has placed his ships.\n") do
+    "Frank, where would you like to place a ship of length 3?\nAcross or Down?\n"+
+    "Frank, where would you like to place a ship of length 3?\nAcross or Down?\n"+
+    "Frank, where would you like to place a ship of length 4?\nAcross or Down?\n"+
+    "Frank, where would you like to place a ship of length 5?\nAcross or Down?\n"+
+    "HAL 9000 has placed his ships.\n") do
       @game.place_ships
     end
   end
@@ -389,8 +389,8 @@ J |   |   |   |   |   |   |   |   |   |   |
     $mock_inputs << "A3"
     $mock_inputs << "Down"
     assert_output("Alice, where would you like to place a ship of length 2?\nAcross or Down?\n"+
-                  "Alice, where would you like to place a ship of length 3?\nAcross or Down?\n"+
-                  "HAL 9000 has placed his ships.\n") do
+    "Alice, where would you like to place a ship of length 3?\nAcross or Down?\n"+
+    "HAL 9000 has placed his ships.\n") do
       game.place_ships
     end
   end
@@ -407,10 +407,10 @@ J |   |   |   |   |   |   |   |   |   |   |
     $mock_inputs << "F1"
     $mock_inputs << "Across"
     assert_output("Alice, where would you like to place a ship of length 2?\nAcross or Down?\n"+
-                  "Alice, where would you like to place a ship of length 3?\nAcross or Down?\n"+
-                  "Unfortunately, that ship overlaps with one of your other ships.  Please try again.\n"+
-                  "Alice, where would you like to place a ship of length 3?\nAcross or Down?\n"+
-                  "HAL 9000 has placed his ships.\n") do
+    "Alice, where would you like to place a ship of length 3?\nAcross or Down?\n"+
+    "Unfortunately, that ship overlaps with one of your other ships.  Please try again.\n"+
+    "Alice, where would you like to place a ship of length 3?\nAcross or Down?\n"+
+    "HAL 9000 has placed his ships.\n") do
       game.place_ships
     end
   end
@@ -459,8 +459,7 @@ H |   |   |   |   |   |   |   |   |   |   |
 I |   |   |   |   |   |   |   |   |   |   |
 J |   |   |   |   |   |   |   |   |   |   |
   -----------------------------------------
-
-    1   2   3   4   5   6   7   8   9   10
+      1   2   3   4   5   6   7   8   9   10
   -----------------------------------------
 A | O |   | O |   | O |   | O |   | O |   |
 B | O |   | O |   | O |   | O |   | O |   |
@@ -524,8 +523,7 @@ H |   |   |   | - |   |   |   |   |   |   |
 I |   |   |   |   |   |   |   |   |   |   |
 J |   |   |   |   |   |   |   |   |   |   |
   -----------------------------------------
-
-    1   2   3   4   5   6   7   8   9   10
+      1   2   3   4   5   6   7   8   9   10
   -----------------------------------------
 A |   | X |   |   |   |   |   |   |   |   |
 B |   | O |   |   |   |   |   |   |   |   |

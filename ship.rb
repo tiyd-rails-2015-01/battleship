@@ -1,15 +1,19 @@
-require './board'
+require './board.rb'
 
 class Ship
   def initialize(length)
     @length = length
     @coords = []
     @placed = false
-    @hits = 0
+    @hits = []
   end
 
   def length
     return @length
+  end
+
+  def coords
+    @coords
   end
 
   def place(x, y, horizontal)
@@ -47,15 +51,12 @@ class Ship
     hit = false
     if @coords.include? [x, y]
       hit = true
-      @hits += 1
+      @hits << [x,y]
     end
     return hit
   end
 
   def sunk?
-    sunk = false
-    if @hits == @length
-      sunk = true
-    end
+     @hits == @coords
   end
 end
