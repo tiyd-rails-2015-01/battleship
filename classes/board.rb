@@ -40,20 +40,33 @@ class Board
     end
   end
 
+def display_header
+  puts "    1   2   3   4   5   6   7   8   9   10"
+  puts "  -----------------------------------------"
+end
+
+def display_bottom
+  puts "  -----------------------------------------"
+end
+
   def display
-puts"    1   2   3   4   5   6   7   8   9   10"
-puts"  -----------------------------------------"
-puts"A |   |   |   |   |   |   |   |   |   |   |"
-puts"B |   |   |   |   |   |   |   |   |   |   |"
-puts"C |   |   |   |   |   |   |   |   |   |   |"
-puts"D |   |   |   |   |   |   |   |   |   |   |"
-puts"E |   |   |   |   |   |   |   |   |   |   |"
-puts"F |   |   |   |   |   |   |   |   |   |   |"
-puts"G |   |   |   |   |   |   |   |   |   |   |"
-puts"H |   |   |   |   |   |   |   |   |   |   |"
-puts"I |   |   |   |   |   |   |   |   |   |   |"
-puts"J |   |   |   |   |   |   |   |   |   |   |"
-puts"  -----------------------------------------"
+    letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+    output = ""
+    self.display_header
+    (1..10).each do |r|
+      output = "#{letters[r - 1]} |"
+      (1..10).each do |c|
+        if @hits.include?([c, r])
+          output << " X |"
+        elsif self.has_ship_on?(c, r)
+          output << " O |"
+        else
+          output << "   |"
+        end
+      end
+      puts output
+    end
+    self.display_bottom
   end
-  
+
 end
