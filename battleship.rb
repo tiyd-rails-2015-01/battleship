@@ -1,4 +1,5 @@
 require './ship.rb'
+require './board.rb'
 
 carrier = Ship.new(5)
 battleship = Ship.new(4)
