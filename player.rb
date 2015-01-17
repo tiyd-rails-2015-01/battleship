@@ -1,5 +1,5 @@
-class Player(type_of_player)
-  def initialize()
-  @Player
-  @HumanPlayer
-  @ComputerPlayer
+class Player
+  def initialize
+
+  end
+end

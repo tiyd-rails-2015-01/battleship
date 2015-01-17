@@ -79,10 +79,22 @@ class Board
     self.display_bottom
   end
 
+  def sunk?
+    if @ships.empty?
+      return false
+    end
+    @ships.each do |ship|
+      if ship.sunk? == false
+        return false
+      else
+        return true
+      end
+    end
+  end
+
 end
 
 
 
 attacker_board = Board.new
 defender_board = Board.new
-.

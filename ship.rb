@@ -50,7 +50,7 @@ class Ship
 
   def fire_at(horizontal, vertical)
     if covers?(horizontal, vertical)
-      @hit_points = @hit_points - 1
+      @hit_points -= 1
       return true
     else
       return false
