@@ -15,9 +15,15 @@ class Board
     end
     return ship_on
   end
+
   def place_ship(ship, x, y, direction)
     ship.place(x, y, direction)
-    @fleet << ship
-    return true
+    @fleet.each do |s|
+      if s.overlaps_with?(ship)
+        return false
+      end
     end
+    @fleet << ship
   end
+
+end
