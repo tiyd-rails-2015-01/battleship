@@ -47,9 +47,13 @@ class Board
     puts"  -----------------------------------------"
     counter.each do |square|
       now_letter = letters[square-1]
-      box = " "#square-1
       print "#{now_letter}"
-      print " #{box} | #{box} | #{box} | #{box} | #{box} | #{box} | #{box} | #{box} | #{box} | #{box} |"
+      boxes = []
+      counter.each do |apple|
+        box = counter[apple-1]
+        boxes << box
+      end
+      print " #{boxes[0]} | #{boxes[1]} | #{boxes[2]} | #{boxes[3]} | #{boxes[4]} | #{boxes[5]} | #{boxes[6]} | #{boxes[7]} | #{boxes[8]} | #{boxes[9]} |"
       print "\n"
     end
     #puts"A |   |   |   |   |   |   |   |   |   |   |"
