@@ -33,19 +33,19 @@ class Board
   def fire_at(x_axis, y_axis)
     hit = false
     attack = [x_axis, y_axis]
-    @fleet.each do |attack|
-      #x_axis = attack[0]
-      #y_axis = attack[1]
+    @fleet.each do |ship|
+      # x_axis = ship[0]
+      # y_axis = ship[1]
       if @shots_fired.include?(attack)
         hit = true
-        @shots_fired << attack
+        # @shots_fired << attack
       end
     end
     if !hit
       @shots_fired << attack
-      return false
-    else
       return true
+    else
+      return false
 
     end
   end
