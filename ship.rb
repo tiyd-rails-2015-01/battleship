@@ -4,7 +4,7 @@ class Ship
     @locations = []
     @has_been_placed = false
     @overlaps_with = false
-
+    @hitpoints = shiplength
   end
 
   def length
@@ -46,10 +46,18 @@ class Ship
 
   def fire_at(x,y)
     if @locations.include?([x,y])
+      @hitpoints = (@hitpoints - 1)
+      # @hitpoints -=1
       return true
     else
       return false
     end
+  end
+
+  def sunk?
+   if @hitpoints == 0
+     return true
+   end
   end
 
 
