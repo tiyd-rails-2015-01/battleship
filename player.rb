@@ -66,6 +66,7 @@ class HumanPlayer < Player
 
         unless shipHasBeenPlaced
           puts "Unfortunately, that ship overlaps with one of your other ships.  Please try again."
+          puts "#{@name}, where would you like to place a ship of length #{size}?"
         end
       end
     end
