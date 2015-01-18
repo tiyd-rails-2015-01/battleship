@@ -10,4 +10,5 @@ class ComputerPlayer < Player
     return true
   end
 end
-  
+
+# may try to change ships to fleet to avoid problems

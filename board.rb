@@ -107,3 +107,5 @@ class Board
     end
   end
 end
+
+# may try to change ships to fleet to avoid problems

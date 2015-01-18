@@ -15,3 +15,5 @@ class Player
     end
   end
 end
+
+# may try to change ships to fleet to avoid problems
