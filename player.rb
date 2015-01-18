@@ -1,3 +1,4 @@
+
 class Player
   attr_accessor :ships, :name, :board
 
@@ -7,20 +8,14 @@ class Player
     @ships = []
   end
 
-  def place_ships(ship_lengths)
-    #puts "BUTTS"
+  def create_ships(ship_lengths)
     if @ships.empty?
-      self.create_ships(ship_lengths)
+      ship_lengths.each do |l|
+        @ships << Ship.new(l)
+      end
     end
-    puts "#{@name} has placed his ships.\n"
-    return true
   end
 
-  def create_ships(ship_lengths)
-    ship_lengths.each do |l|
-      @ships << Ship.new(l)
-    end
-  end
 
 end
 
@@ -50,3 +45,18 @@ end
 #  puts "#{@name} has placed his ships.\n"
 #end
 #puts @ships
+
+#Working!
+#def place_ships(ship_lengths)
+#  #puts "BUTTS"
+#  if @ships.empty?
+#    self.create_ships(ship_lengths)
+#  end
+#  puts "#{@name} has placed his ships.\n"
+#  return true
+#end
+#def create_ships(ship_lengths)
+#  ship_lengths.each do |l|
+#    @ships << Ship.new(l)
+#  end
+#end
