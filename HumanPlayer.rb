@@ -19,7 +19,7 @@ class HumanPlayer < Player
   def place_ships(ship_lengths)
     self.create_ships(ship_lengths)
     @ships.each do |ship|
-      until ship.placed
+      until ship.placed do
         puts "#{@name}, where would you like to place a ship of length #{ship.length}?"
         coords = get_user_input
         column = @board.x_of(coords)
