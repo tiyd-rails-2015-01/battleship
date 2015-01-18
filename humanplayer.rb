@@ -22,7 +22,7 @@ class HumanPlayer < Player
       else
         a_or_d = true
       end
-      ship.place(row,column, a_or_d)
+      board.place_ship(row,column, a_or_d, ship)
     end
   end
 end
