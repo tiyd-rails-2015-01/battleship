@@ -1,10 +1,10 @@
-class Board
+  class Board
 
-  def initialize(board)
-    @board = board
-  end
+    def initialize(emptyboard)
+      @empty_board = emptyboard
+    end
 
-  def has_ship_on?
-    
+    def has_ship_on?
+      return @emptyboard
+    end
   end
-end
