@@ -9,4 +9,8 @@ class HumanPlayer < Player
   def name
     @name
   end
+
+
+
+
 end

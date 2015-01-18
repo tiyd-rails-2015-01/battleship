@@ -8,4 +8,11 @@ class ComputerPlayer < Player
   def name
     @name
   end
+
+  def place_ships(ship_lengths)
+    self.create_ships(ship_lengths)
+    puts "#{@name} has placed his ships.\n"
+    return true
+  end
+
 end

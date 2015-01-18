@@ -1,6 +1,9 @@
 require './ship.rb'
 
 class Board
+
+
+
   def initialize
     @ships = []
     @place
@@ -93,7 +96,18 @@ class Board
     self.display_bottom
   end
 
+  def x_of(coordinate)
+    coordinate.slice(1..coordinate.length).to_i
+  end
 
-
+  def y_of(coordinate)
+    letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I"]
+    y = coordinate[0]
+    letters.each_with_index do |letter, index|
+      if letter == y
+        return index + 1
+      end
+    end
+  end
 
 end
