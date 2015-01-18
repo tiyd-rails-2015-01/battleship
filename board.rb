@@ -1,5 +1,6 @@
 #require './ship'
 class Board
+  attr_accessor :shots_fired
   def initialize
     @fleet = []
     @shots_fired = []
@@ -22,26 +23,23 @@ class Board
     @fleet.each do |ship|
       if ship.overlaps_with?(ship)
         conflict = true
+        end
       end
-    end
-    if !conflict
-      @fleet << ship
-      return true
-    else
-      return false
+      if !conflict
+        @fleet << ship
+        add_coordinates_of_ships
+        return true
+      else
+        return false
     end
   end
 
-  def coordinates_of_ships
+  def add_coordinates_of_ships
     @fleet.each do |ship|
       @coordinates_of_ships << ship.coordinates
     end
     return @coordinates_of_ships
   end
-
-def shots_fired
-  @shots_fired
-end
 
   def fire_at(x_axis, y_axis)
     if @fleet.empty?
@@ -92,28 +90,28 @@ end
   end
 
   def full_board
+    puts "#{@fleet}, with coordinates: #{@coordinates_of_ships}"
     header = ["A |","B |","C |","D |","E |","F |","G |","H |","I |","J |"]
-    header.each do |letter|
-      print "#{letter}"
-      10.times do
-        @coordinates_of_ships.each do |c|
-          if @coordinates_of_ships.include?[c[0],c[1]] && !@shots_fired.include?[c[0],c[1]]
+    10.times do |y|
+      print header[y]
+      header
+        10.times do |x|
+          if add_coordinates_of_ships.include?([x,y]) #&& !@shots_fired.include?(x,y)
             print " O |"
-          elsif @coordinates_of_ships.include?[c[0],c[1]] && @shots_fired.include?[c[0],c[1]]
-            print " X |"
+          #elsif coordinates_of_ships.include?(x) #&& @shots_fired.include?(x,y)
+          #  print " X |"
           else
-            print "   |"
+           print "   |"
           end
         end
-      end
-        puts "\n"
+      puts "\n"
     end
   end
 end
 
 
-board = Board.new
-board.display
+# board = Board.new
+# board.display
 # board.top_lines
 # board.full_board
 # board.bottom_line
