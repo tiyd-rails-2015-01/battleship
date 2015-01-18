@@ -1,6 +1,7 @@
-require './ship.rb'
+require './ship'
 
 class Board
+  LETTERS = ('A'..'J').to_a
   def initialize
     @fleet = []
     @hits = []
@@ -80,5 +81,13 @@ class Board
         return true
       end
     end
+  end
+
+  def x_of(string)
+    string[1..-1].to_i
+  end
+
+  def y_of(string)
+    LETTERS.index(string[0])+1
   end
 end
