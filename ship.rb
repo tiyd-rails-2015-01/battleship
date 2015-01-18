@@ -11,6 +11,7 @@ class Ship
     @length
   end
 
+
   def coordinates
     @coordinates
   end
@@ -58,4 +59,6 @@ class Ship
       return true
     end
   end
+
+  
 end
