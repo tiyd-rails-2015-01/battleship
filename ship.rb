@@ -11,8 +11,7 @@ class Ship
 
   def place(x, y, across)
     @across= across
-    if
-      @covered_coordinates== []
+    if @covered_coordinates== []
         if across
           (x..x+@length-1).to_a.each do |coord|
             @covered_coordinates << [coord, y]

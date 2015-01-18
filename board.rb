@@ -1,4 +1,3 @@
-
 class Board
   def initialize
     @fleet=[]
@@ -6,7 +5,6 @@ class Board
     @misses= []
   end
   def place_ship(ship,x,y, across)
-    @ship=ship
     ship.place(x,y, across)
     conflict= false
       @fleet.each do |existing_ship|
@@ -96,6 +94,39 @@ class Board
       ship_length += i.length
     end
     return ship_length
+  end
+
+  def x_of(coordinates)
+    coordinates.split ""
+    x= coordinates[1,2].to_i
+    return x
+  end
+
+  def y_of(coordinates)
+    coordinates.split ""
+    y = coordinates[0]
+    if y == "A"
+      y = 1
+    elsif y == "B"
+      y = 2
+    elsif y == "C"
+      y = 3
+    elsif y == "D"
+      y = 4
+    elsif y == "E"
+      y = 5
+    elsif y == "F"
+      y = 6
+    elsif y == "G"
+      y = 7
+    elsif y == "H"
+      y = 8
+    elsif y == "I"
+      y = 9
+    elsif y == "J"
+      y = 10
+    end
+    return y
   end
 
 end
