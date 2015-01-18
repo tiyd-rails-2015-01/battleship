@@ -14,8 +14,8 @@ class Board
   end
   def place_ship(ship, x, y, across)
     ship.place(x, y, across)
-    @fleet.each do |ship|
-      if ship.overlaps_with?(ship)
+    @fleet.each do |other_ships|
+      if ship.overlaps_with?(other_ships)
         return false
       end
     end
@@ -57,12 +57,12 @@ class Board
     row.each do |num|
 
       boxes = [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "]
-      boxes.each do |box|
-        ship_coords.each do |coord|
-         if coord[1] == num
-           boxes[coord[0]-1] = "A"
-         end
-       end
+
+      ship_coords.each do |coord|
+        if coord[1] == num
+          boxes[coord[0]-1] = "O"
+        end
+
       end
 
       puts "#{letters[num-1]} #{boxes[0]} | #{boxes[1]} | #{boxes[2]} | #{boxes[3]} |" +
