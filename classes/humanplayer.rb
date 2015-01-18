@@ -1,5 +1,10 @@
 class HumanPlayer < Player
-  def initialize(name)
-
+  def initialize(input)
+    @name = input
   end
+
+  def name
+    return @name
+  end
+
 end
