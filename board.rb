@@ -10,8 +10,8 @@ class Board
   def place_ship(ship, x, y, across)
     ship.place(x, y, across)
     conflict = false
-    @fleet.each do |ship|
-      if ship.overlaps_with?(ship)
+    @fleet.each do |s|
+      if s.overlaps_with?(ship)
         conflict = true
       end
     end
@@ -48,19 +48,49 @@ class Board
     end
   end
 
-  def display
+  def display_header
     puts "    1   2   3   4   5   6   7   8   9   10"
     puts "  -----------------------------------------"
-    puts "A |   |   |   |   |   |   |   |   |   |   |"
-    puts "B |   |   |   |   |   |   |   |   |   |   |"
-    puts "C |   |   |   |   |   |   |   |   |   |   |"
-    puts "D |   |   |   |   |   |   |   |   |   |   |"
-    puts "E |   |   |   |   |   |   |   |   |   |   |"
-    puts "F |   |   |   |   |   |   |   |   |   |   |"
-    puts "G |   |   |   |   |   |   |   |   |   |   |"
-    puts "H |   |   |   |   |   |   |   |   |   |   |"
-    puts "I |   |   |   |   |   |   |   |   |   |   |"
-    puts "J |   |   |   |   |   |   |   |   |   |   |"
+  end
+
+  def display
+    letters = ["A","B","C","D","E","F","G","H","I","J"]
+    self.display_header
+    (1..10).each do |r|
+      output_row = "#{letters[r-1]} |"
+      (1..10).each do |c|
+        if @hit.include?([c,r])
+          output_row += " X |"
+        elsif self.has_ship_on?(c,r)
+          output_row += " O |"
+        else
+          output_row += "   |"
+        end
+      end
+      puts output_row
+    end
+
+    self.display_bottom
+
+  end
+
+  def display_bottom
     puts "  -----------------------------------------"
+  end
+
+  def sunk?
+    if @hit.empty?
+      return false
+    else
+      @hit.length == self.ship_points
+    end
+  end
+
+  def ship_points
+    ship_length = 0
+    @fleet.each do |i|
+      ship_length += i.length
+    end
+    return ship_length
   end
 end

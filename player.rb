@@ -1,14 +1,5 @@
-  class Player
-    def initialize(name)
-  end
-end
-
-  class HumanPlayer < Player
-    def initialize
-  end
-end
-
-  class ComputerPlayer < Player
-    def initialize
+class Player
+  attr_reader :name
+  def place_ships
   end
 end
