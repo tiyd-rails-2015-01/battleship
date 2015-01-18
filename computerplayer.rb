@@ -1,7 +1,13 @@
 class ComputerPlayer < Player
-  attr_accessor :board
+
   def initialize
-    @name = "HAL 9000"
-    @board = Board.new
+    super("HAL 9000")
+  end
+
+  def place_ships(ship_lengths)
+    self.create_ships(ship_lengths)
+    puts "#{@name} has placed his ships.\n"
+    return true
   end
 end
+  

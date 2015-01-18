@@ -3,20 +3,20 @@
 class Board
 
   def initialize
-    @fleet = []
+    @ships = []
     @hit = []
   end
 
   def place_ship(ship, x, y, across)
     ship.place(x, y, across)
     conflict = false
-    @fleet.each do |s|
+    @ships.each do |s|
       if s.overlaps_with?(ship)
         conflict = true
       end
     end
     if !conflict
-      @fleet << ship
+      @ships << ship
       return true
     else
       return false
@@ -25,7 +25,7 @@ class Board
 
   def has_ship_on?(x, y)
     has_ship_on = false
-    @fleet.each do |ships|
+    @ships.each do |ships|
       if ships.covers?(x, y)
         has_ship_on = true
       end
@@ -34,10 +34,10 @@ class Board
   end
 
   def fire_at(x, y)
-    if @fleet.empty? || @hit.include?([x, y])
+    if @ships.empty? || @hit.include?([x, y])
     return false
     else
-      @fleet.each do |ship|
+      @ships.each do |ship|
         if ship.fire_at(x, y)
           @hit << [x, y]
           return true
@@ -88,9 +88,22 @@ class Board
 
   def ship_points
     ship_length = 0
-    @fleet.each do |i|
+    @ships.each do |i|
       ship_length += i.length
     end
     return ship_length
+  end
+
+  def x_of(coords)
+    coords.slice(1..coords.length).to_i
+  end
+  def y_of(coords)
+    letters = ["A","B","C","D","E","F","G","H","I","J"]
+    y = coords[0]
+    letters.each_with_index do |l , index|
+      if y == l
+        return (index + 1)
+      end
+    end
   end
 end
