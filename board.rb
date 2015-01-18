@@ -1,10 +1,9 @@
-require './ship'
+#require './ship'
 class Board
   def initialize
-    @ship
     @fleet = []
     @shots_fired = []
-    @display
+    @coordinates_of_ships = []
   end
 
   def has_ship_on?(x_axis, y_axis)
@@ -16,6 +15,7 @@ class Board
     end
       return ship_on
   end
+
   def place_ship(ship, x_axis, y_axis, across)
     ship.place(x_axis, y_axis, across)
     conflict = false
@@ -31,6 +31,18 @@ class Board
       return false
     end
   end
+
+  def coordinates_of_ships
+    @fleet.each do |ship|
+      @coordinates_of_ships << ship.coordinates
+    end
+    return @coordinates_of_ships
+  end
+
+def shots_fired
+  @shots_fired
+end
+
   def fire_at(x_axis, y_axis)
     if @fleet.empty?
       return false
@@ -51,11 +63,13 @@ class Board
   end
 
   def display
-    top_two_lines
-    empty_board
-    bottom_line
+      top_lines
+      full_board
+      bottom_line
   end
-  def top_two_lines
+
+
+  def top_lines
     puts "    1   2   3   4   5   6   7   8   9   10"
     puts "  -----------------------------------------"
   end
@@ -76,43 +90,30 @@ class Board
   def bottom_line
     puts "  -----------------------------------------"
   end
+
   def full_board
-    (1..10).each do |display|
-      header = ["A","B","C","D","E","F","G","H","I","J"]
-      header.each do |letter|
-        puts "#{letter} |   |   |   |   |   |   |   |   |   |   |"
-        letter
+    header = ["A |","B |","C |","D |","E |","F |","G |","H |","I |","J |"]
+    header.each do |letter|
+      print "#{letter}"
+      10.times do
+        @coordinates_of_ships.each do |c|
+          if @coordinates_of_ships.include?[c[0],c[1]] && !@shots_fired.include?[c[0],c[1]]
+            print " O |"
+          elsif @coordinates_of_ships.include?[c[0],c[1]] && @shots_fired.include?[c[0],c[1]]
+            print " X |"
+          else
+            print "   |"
+          end
+        end
       end
-      #self.full_board
+        puts "\n"
     end
   end
-  # def full_board
-  #   @fleet
-  #
-  #   fire at = (1,1) a_1 = ship puts
-  #
-  #
-  #
-  #
-  #   puts "A |#{a_1}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|"
-  #   puts "B |#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|"
-  #   puts "C |#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|"
-  #   puts "D |#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|"
-  #   puts "E |#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|"
-  #   puts "F |#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|"
-  #   puts "G |#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|"
-  #   puts "H |#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|"
-  #   puts "I |#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|"
-  #   puts "J |#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|#{}|"
-  #
-  #
-  #
-  #
-  #
-  # end
-
-
-
-
-
 end
+
+
+board = Board.new
+board.display
+# board.top_lines
+# board.full_board
+# board.bottom_line

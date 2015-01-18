@@ -7,9 +7,15 @@ class Ship
     @placed = false
     @hit_counter = 0
   end
+
+  def coordinates
+    @coordinates
+  end
+
   def length
     return @length
   end
+
   def place(x_axis, y_axis, across)
     if @placed == false
       if across
@@ -24,9 +30,11 @@ class Ship
       @placed = true
     end
   end
+
   def covers?(x_axis, y_axis)
     @coordinates.include? [x_axis, y_axis]
   end
+
   def overlaps_with?(ship)
     overlap = false
     @coordinates.each do |coordinates|
@@ -38,6 +46,7 @@ class Ship
     end
     return overlap
   end
+
   def fire_at(x_axis, y_axis)
     hit = false
     if @coordinates.include? [x_axis, y_axis]
@@ -46,6 +55,7 @@ class Ship
     end
     return hit
   end
+
   def sunk?
     sunk = false
     if @hit_counter == @length
