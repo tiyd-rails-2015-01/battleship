@@ -2,12 +2,11 @@ class Ship
 
   attr_reader :length, :locations
 
-  def initialize (length, name=nil)
+  def initialize (length)
     @length = length
     @locations = []
     @placed = false
     @ship_hits = 0
-    #@name = name
   end
 
   def gets_hit
@@ -42,7 +41,7 @@ class Ship
     return do_they_actually_overlap
   end
 
-  def fire_at(column, row) 
+  def fire_at(column, row)
     hit = false
     if @locations.include?([column , row])
       hit = true

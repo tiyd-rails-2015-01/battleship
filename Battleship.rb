@@ -5,6 +5,10 @@ require './board.rb'
 require './HumanPlayer.rb'
 require './ComputerPlayer.rb'
 
+
+# player = ComputerPlayer.new
+#  player.place_ships([2, 3, 3, 4, 5])
+#  puts player.ships.length
 #carrier = Ship.new(5)
 # battleship = Ship.new#("Battleship",4,0)
 # cruiser = Ship.new#("Cruiser",5,0)
