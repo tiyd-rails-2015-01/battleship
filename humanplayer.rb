@@ -11,10 +11,10 @@ class HumanPlayer < Player
   def place_ships(ship_lengths)
     self.create_ships(ship_lengths)
     @ships.each do |ship|
-      puts "#{@name}, where do you want to place a ship with length #{ship.length}?"
+      puts "#{@name}, where would you like to place a ship of length #{ship.length}?"
       coords = get_user_input
-      column = @board.x_of(coords)
-      row = @board.y_of(coords)
+      x = @board.x_of(coords)
+      y = @board.y_of(coords)
       puts "Across or Down?"
       a_or_d = get_user_input
       if a_or_d == "Down"
@@ -22,7 +22,7 @@ class HumanPlayer < Player
       else
         a_or_d = true
       end
-      board.place_ship(row,column, a_or_d, ship)
+      board.place_ship(ship, x, y, a_or_d)
     end
   end
 end
