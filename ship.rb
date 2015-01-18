@@ -1,6 +1,6 @@
 class Ship
 
-  attr_reader :length, :locations
+  attr_accessor :length, :locations, :placed
 
   def initialize (length)
     @length = length
@@ -35,6 +35,7 @@ class Ship
       column = location[0]
       row = location[1]
       if other_ship.covers?(column, row) # true or false
+        puts "Unfortunately, that ship overlaps with one of your other ships.  Please try again."
         do_they_actually_overlap = true
       end
     end

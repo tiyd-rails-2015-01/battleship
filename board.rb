@@ -19,6 +19,7 @@ class Board
       @ships << ship
       return true
     else
+      ship.placed = false
       return false
     end
   end
