@@ -1,4 +1,4 @@
-require './board'
+#require './board'
 
 class Ship
   def initialize(length)
@@ -51,7 +51,7 @@ class Ship
     hit = false
     if @coordinates.include? [x_axis, y_axis]
       hit = true
-      @hit_counter += 1
+      @hit_counter += 1 #is this working
     end
     return hit
   end

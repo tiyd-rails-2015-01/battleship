@@ -1,10 +1,30 @@
 class Board
-  attr_accessor :shots_fired, :fleet
+  attr_accessor :shots_fired, :fleet, :coordinates_of_ships
   def initialize
     @fleet = []
     @shots_fired = []
     @coordinates_of_ships = []
-    @sunk = []
+    #@sunk = []
+  end
+
+  def place_ship(ship, x_axis, y_axis, across)
+    ship.place(x_axis, y_axis, across)
+    @fleet.each do |other_ships|
+      if ship.overlaps_with?(other_ships)
+        return false
+      end
+    end
+    @fleet << ship
+    return true
+
+    # conflict = false
+    # if board_conflict?(ship) == true
+    #   conflict = true
+    # else
+    #   @fleet << ship
+    #   add_coordinates_of_ships
+    #   # return true
+    # end
   end
 
   def has_ship_on?(x_axis, y_axis)
@@ -14,26 +34,14 @@ class Board
         ship_on = true
       end
     end
-      return ship_on
+    return ship_on
   end
 
-  def place_ship(ship, x_axis, y_axis, across)
-    ship.place(x_axis, y_axis, across)
-    conflict = false
-    if board_conflict?(ship) == true
-      conflict = true
-    else
-      @fleet << ship
-      add_coordinates_of_ships
-      # return true
-    end
-  end
-
-  def board_conflict?(ship)
-    ship.coordinates.each do |coord|
-      @coordinates_of_ships.include?(coord)
-    end
-  end
+  # def board_conflict?(ship)
+  #   ship.coordinates.each do |coord|
+  #     @coordinates_of_ships.include?(coord)
+  #   end
+  # end
 
   def add_coordinates_of_ships
     @fleet.each do |ship|
@@ -64,13 +72,13 @@ class Board
   end
 
   def display
-      top_lines
-      if @coordinates_of_ships == []
-        empty_board
-      else
-        full_board
-      end
-      bottom_line
+    top_lines
+    # if @coordinates_of_ships == []  (we will never need this)
+    #   empty_board
+    # else
+    full_board
+    # end
+    bottom_line
   end
 
 
@@ -97,6 +105,7 @@ class Board
   end
 
   def full_board
+    add_coordinates_of_ships
     header = ["A |","B |","C |","D |","E |","F |","G |","H |","I |","J |"]
     (1..10).each do |y|
       print header[y-1]
@@ -116,12 +125,14 @@ class Board
 
   def sunk?
     puts "#{@fleet}"
+    puts "#{@shots_fired}"
+    puts "#{@coordinates_of_ships}"
     sunk = false
     if @shots_fired.empty?
       sunk = false
     else
       @fleet.each do |sunk|
-      @hit_counter == @length
+      @hit_counter == 0
       sunk = true
       end
       # return true

@@ -241,8 +241,6 @@ J |   |   |   |   |   |   |   |   |   |   |
     assert board.sunk?
   end
 
-
-
   def test_21_player_classes_exist
     assert Player
     assert HumanPlayer
