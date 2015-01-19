@@ -11,6 +11,10 @@ class Ship
     @length
   end
 
+  def placed
+    @placed
+  end
+
 
   def coordinates
     @coordinates
@@ -60,5 +64,5 @@ class Ship
     end
   end
 
-  
+
 end
