@@ -2,12 +2,18 @@ def get_user_input
   gets.chomp
 end
 
+require './board.rb'
+
 class Player
   def initialize
   end
 
   def name
     return @name
+  end
+
+  def board
+    return Board.new
   end
 end
 
@@ -19,6 +25,7 @@ class HumanPlayer < Player
   def name
     return @name
   end
+
 end
 
 class ComputerPlayer < Player
