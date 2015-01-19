@@ -9,6 +9,10 @@ class Board
 
   end
 
+  def fleet
+    @fleet
+  end
+
   def has_ship_on?(x, y)
     if @fleet.each do |ship|
       if ship.covers?(x, y)
@@ -48,5 +52,31 @@ class Board
     return false
   end # def end
 
+  def display_header
+    puts "    1   2   3   4   5   6   7   8   9   10"
+    puts "  -----------------------------------------"
+  end
+
+  def display_rows
+    letters = ("A".."J").to_a
+    letters.each do |l|
+      print "#{l} |"
+      10.times do
+        print "   |"
+      end
+      print "\n"
+    end
+
+  end
+
+  def display_footer
+    puts "  -----------------------------------------"
+  end
+  def display
+    display_header
+    display_rows
+    display_footer
+
+  end
 
 end # class end
