@@ -1,4 +1,5 @@
 class Board
+  attr_accessor :fleet
   def initialize()
     @fleet = []
     @has_been_shot = []

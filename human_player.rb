@@ -1,3 +1,6 @@
+require './ship.rb'
+require './board.rb'
+
 class HumanPlayer < Player
   def initialize(name="Dave")
     @name = name
