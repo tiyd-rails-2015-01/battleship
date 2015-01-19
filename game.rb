@@ -3,7 +3,7 @@ def get_user_input
 end
 
 class Game
-  def initialize(human = HumanPlayer.new, computer = ComputerPlayer.new, default_ships = [2,3,3,4,5])
+  def initialize(human , computer = ComputerPlayer.new, default_ships = [2,3,3,4,5]) #= HumanPlayer.new
     @human = human
     @computer = computer
     @default_ships = default_ships

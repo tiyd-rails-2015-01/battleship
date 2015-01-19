@@ -13,11 +13,11 @@ class Board
     @misses = []
   end
 
-  def place_ship(ship, column, row, across)
+  def place_ship(ship, column, row, across, computer = false)
     ship.place(column, row, across)
     conflict = false
     @ships.each do |s|
-      if s.overlaps_with?(ship)
+      if s.overlaps_with?(ship, computer)
         conflict = true
       end
     end
