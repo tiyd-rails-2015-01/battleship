@@ -1,6 +1,5 @@
-#require './ship'
 class Board
-  attr_accessor :shots_fired
+  attr_accessor :shots_fired, :fleet
   def initialize
     @fleet = []
     @shots_fired = []
@@ -20,23 +19,26 @@ class Board
   def place_ship(ship, x_axis, y_axis, across)
     ship.place(x_axis, y_axis, across)
     conflict = false
-    @fleet.each do |ship|
-      if ship.overlaps_with?(ship)
-        conflict = true
-        end
-      end
-      if !conflict
-        @fleet << ship
-        add_coordinates_of_ships
-        return true
-      else
-        return false
+    if board_conflict(ship) == true
+      conflict = true
+    else
+      @fleet << ship
+      add_coordinates_of_ships
+      return true
+    end
+  end
+
+  def board_conflict(ship)
+    ship.coordinates.each do |coord|
+      @coordinates_of_ships.include?(coord)
     end
   end
 
   def add_coordinates_of_ships
     @fleet.each do |ship|
-      @coordinates_of_ships << ship.coordinates
+      ship.coordinates.each do |coord|
+        @coordinates_of_ships << coord
+      end
     end
     return @coordinates_of_ships
   end
@@ -62,7 +64,11 @@ class Board
 
   def display
       top_lines
-      full_board
+      if @coordinates_of_ships == []
+        empty_board
+      else
+        full_board
+      end
       bottom_line
   end
 
@@ -90,16 +96,15 @@ class Board
   end
 
   def full_board
-    puts "#{@fleet}, with coordinates: #{@coordinates_of_ships}"
     header = ["A |","B |","C |","D |","E |","F |","G |","H |","I |","J |"]
     10.times do |y|
       print header[y]
-      header
+      #header
         10.times do |x|
-          if add_coordinates_of_ships.include?([x,y]) #&& !@shots_fired.include?(x,y)
+          if @coordinates_of_ships.include?([x,y]) #&& !@shots_fired.include?([x,y])
             print " O |"
-          #elsif coordinates_of_ships.include?(x) #&& @shots_fired.include?(x,y)
-          #  print " X |"
+          #elsif @coordinates_of_ships.include?([x,y]) && @shots_fired.include?([x,y])
+          # print " X |"
           else
            print "   |"
           end
@@ -109,9 +114,26 @@ class Board
   end
 end
 
-
+#
+# #
 # board = Board.new
+# ship1 = Ship.new(2)
+# board.test_class(ship1, 3, 3, true)
+# # ship2 = Ship.new(5)
+# # ship2.place(7,3,true)
+# # board.test_class(ship2)
+# puts "#{board.inspect}"
+# # board.fleet << ship1
+#
+# # ship1.place(3,6,true)
+# # @coordinates_of_ship << ship1.coordinates
+# # puts "#{@coordinates_of_ship}"
+# #board.place_ship(Ship.new(2), 3, 6, true)
+# # board.place_ship(Ship.new(3), 7, 4, true)
+# # board.place_ship(Ship.new(3), 4, 8, true)
+# # board.place_ship(Ship.new(4), 1, 1, true)
+# # board.place_ship(Ship.new(5), 6, 2, false)
 # board.display
-# board.top_lines
-# board.full_board
-# board.bottom_line
+# # board.top_lines
+# # board.full_board
+# # board.bottom_line
