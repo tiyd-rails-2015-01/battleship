@@ -20,6 +20,7 @@ class ComputerPlayer < Player
       end
     end
     puts "HAL 9000 has placed his ships.\n"
+    true
   end
 
   def place_ship(l)
