@@ -1,4 +1,5 @@
 class Board
+  attr_accessor :ships
   def initialize()
     @ships = []
     @hits = []
