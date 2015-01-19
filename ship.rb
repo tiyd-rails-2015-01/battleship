@@ -4,7 +4,7 @@ class Ship
     @locations = []
     @has_been_placed = false
     @overlaps_with = false
-    @hitpoints = shiplength
+    @hitpoints = @shiplength
   end
 
   def length
@@ -12,16 +12,33 @@ class Ship
       #use @instance variable to indicate that you want to apply this to all the examples
   end
 
-  def place(x, y, direction)
-    if @has_been_placed == false # ______  == _______ # has already been placed
-      if direction
-        @locations = [[x,y],[x+1,y],[x+2,y],[x+3,y]]
-      else
-        @locations = [[x,y],[x,y+1],[x,y+2],[x,y+3]]
+  # def place(x, y, direction)
+  #   if @has_been_placed == false # ______  == _______ # has already been placed
+  #     if direction
+  #       @locations = [[x,y],[x+1,y],[x+2,y],[x+3,y]]
+  #     else
+  #       @locations = [[x,y],[x,y+1],[x,y+2],[x,y+3]]
+  #     end
+  #     @has_been_placed = true
+  #   end
+  # end
+
+  def place(x,y,direction)
+    if @locations.empty?
+      @shiplength.times do
+        @locations << [x,y]
+        if direction
+          x = x+1
+        else
+          y = y+1
+        end
       end
-      @has_been_placed = true
+      return true
+    else
+      return false
     end
   end
+
 
   def covers?(x,y)
     search_for = [x, y]

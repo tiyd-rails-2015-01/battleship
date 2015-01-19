@@ -5,7 +5,7 @@ class Board
     @fleet = []
     @placed = []
     @shotstaken = []
-
+    @cells_with_ships = []
 
   end
 
@@ -28,6 +28,13 @@ class Board
       end
     end
     @fleet << ship
+    # a = ship.locations[0]
+    # b = ship.locations[1]
+    # c = ship.locations[2]
+    # @cells_with_ships << a << b << c
+    ship.locations.each do |location_on_board|
+      @cells_with_ships << location_on_board
+    end
   end
 
 
@@ -45,37 +52,43 @@ class Board
     return false #representing a miss
   end
 
-  def display
-    puts   %Q{    1   2   3   4   5   6   7   8   9   10
-  -----------------------------------------
-A |   |   |   |   |   |   |   |   |   |   |
-B |   |   |   |   |   |   |   |   |   |   |
-C |   |   |   |   |   |   |   |   |   |   |
-D |   |   |   |   |   |   |   |   |   |   |
-E |   |   |   |   |   |   |   |   |   |   |
-F |   |   |   |   |   |   |   |   |   |   |
-G |   |   |   |   |   |   |   |   |   |   |
-H |   |   |   |   |   |   |   |   |   |   |
-I |   |   |   |   |   |   |   |   |   |   |
-J |   |   |   |   |   |   |   |   |   |   |
-  -----------------------------------------
-}
+  def game_board_header
+    puts "    1   2   3   4   5   6   7   8   9   10"
+    puts "  -----------------------------------------"
+  end
+
+  def game_board_footer
+    puts "  -----------------------------------------"
   end
 
 
-
-  #["A", "B", "C", "D", "E", "F", "G", ""]
-
-
-
-
-
-
-
-
-
+  def display
+    y_axis = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+    output = ""
+    self.game_board_header
+    (1..10).each do |row|
+      output = "#{y_axis[row - 1]} |"
+      (1..10).each do |column|
+        if @shotstaken.include?([column,row])
+          output << " X |"
+        elsif self.has_ship_on?(column,row)
+          output << " O |"
+        else
+          output << "   |"
+        end
+      end
+      puts output
+    end
+    self.game_board_footer
+  end
 
 
 
 
 end
+
+# board = Board.new
+#
+#
+# board.place_ship(Ship.new(3), 3, 3, true)
+# puts "#{board.inspect}"
