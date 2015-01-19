@@ -39,18 +39,25 @@ class Board
 
 
   def fire_at(x, y)
+    if @fleet.empty?
+       return false
+    end
     if @shotstaken.include?([x,y])
       return false  #shot already taken
     else
-      @shotstaken << [x,y]
       @fleet.each do |ship|
-        if ship.fire_at(x,y)
-          return true #shot taken & hit
+        if ship.covers?(x,y)
+          @shotstaken << [x,y]
+          return true
+        else
+          @shotstaken << [x,y]
+          return false
         end
       end
     end
-    return false #representing a miss
   end
+  #  return false #representing a miss
+
 
   def game_board_header
     puts "    1   2   3   4   5   6   7   8   9   10"
@@ -69,9 +76,9 @@ class Board
     (1..10).each do |row|
       output = "#{y_axis[row - 1]} |"
       (1..10).each do |column|
-        if @shotstaken.include?([column,row])
+        if @shotstaken.include?([column, row]) && self.has_ship_on?(column, row)
           output << " X |"
-        elsif self.has_ship_on?(column,row)
+        elsif self.has_ship_on?(column, row)
           output << " O |"
         else
           output << "   |"
@@ -81,9 +88,6 @@ class Board
     end
     self.game_board_footer
   end
-
-
-
 
 end
 
