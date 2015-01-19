@@ -228,25 +228,25 @@ J |   |   |   |   |   |   |   |   |   |   |
 }
   end
 
-#   def test_20_entire_board_can_be_sunk
-#     board = Board.new
-#     refute board.sunk?
-#     board.place_ship(Ship.new(2), 6, 4, true)
-#     refute board.sunk?
-#     board.fire_at(6, 4)
-#     refute board.sunk?
-#     board.fire_at(7, 4)
-#     assert board.sunk?
-#   end
-#
-#
-#
-#   def test_21_player_classes_exist
-#     assert Player
-#     assert HumanPlayer
-#     assert ComputerPlayer
-#   end
-#
+  def test_20_entire_board_can_be_sunk
+    board = Board.new
+    refute board.sunk?
+    board.place_ship(Ship.new(2), 6, 4, true)
+    refute board.sunk?
+    board.fire_at(6, 4)
+    refute board.sunk?
+    board.fire_at(7, 4)
+    assert board.sunk?
+  end
+
+
+
+# def test_21_player_classes_exist
+#   assert Player
+#   assert HumanPlayer
+#   assert ComputerPlayer
+# end
+
 #   def test_22_players_have_inheritance
 #     assert_equal Player, HumanPlayer.superclass
 #     assert_equal Player, ComputerPlayer.superclass

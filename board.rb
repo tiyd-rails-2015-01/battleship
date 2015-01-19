@@ -63,7 +63,7 @@ class Board
     (1..10).each do |row|
       output = "#{y_axis[row - 1]} |"
       (1..10).each do |column|
-        if @shots_taken.include?([column, row])
+        if @shots_taken.include?([column, row]) && self.has_ship_on?(column, row)
           output << " X |"
         elsif self.has_ship_on?(column, row)
           output << " O |"
@@ -74,6 +74,17 @@ class Board
       puts output
     end
     self.game_board_footer
+  end
+
+  def sunk?
+    if @shots_taken.empty?
+      return false
+    end
+    if @shots_taken.sort == @cells_with_ships
+      return true
+    else
+      return false
+    end
   end
 
 end
