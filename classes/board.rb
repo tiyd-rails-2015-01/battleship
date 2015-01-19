@@ -83,4 +83,19 @@ class Board
     end
   end
 
+  def x_of(coords)
+    @coords = coords
+    x = coords[1..coords.length].to_i
+  end
+
+  def y_of(coords)
+    letters = ["A","B","C","D","E","F","G","H","I","J"]
+    y = coords[0]
+    letters.each_with_index do |l , index|
+      if y == l
+        return (index + 1)
+      end
+    end
+  end
+
 end
