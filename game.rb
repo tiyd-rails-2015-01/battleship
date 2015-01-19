@@ -1,6 +1,11 @@
+
+
 class Game
   def initialize(human, computer)
-    @human = HumanPlayer.new
-    @computer = ComputerPlayer.new
+    @human = human
+    @computer = computer
+  end
+  def welcome
+    puts "Welcome, #{@human.name} and #{@computer.name}!\nIt's time to play Battleship."
   end
 end
