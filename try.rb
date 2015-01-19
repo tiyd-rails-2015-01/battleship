@@ -53,6 +53,7 @@ class Board
   def initialize()
     @fleet = []
     @has_been_shot = []
+    @coordinates = []
   end
   def has_ship_on?(x, y)
     covered = false
@@ -65,8 +66,8 @@ class Board
   end
   def place_ship(ship, x, y, across)
     ship.place(x, y, across)
-    @fleet.each do |potato|
-      if ship.overlaps_with?(potato)
+    @fleet.each do |other_ships|
+      if ship.overlaps_with?(other_ships)
         return false
       end
     end
@@ -80,50 +81,52 @@ class Board
       @fleet.each do |ship|
         if ship.fire_at(x, y)
           @has_been_shot << [x, y]
-        return true
+          return true
         end
       end
     end
     return false
   end
   def fleet_positions
-  coordinates = []
-  @fleet.each do |ship|
-    ship.show_coords.each do |c|
-      coordinates << c
-    end
-  end
-  return coordinates
-end
-def display
-  puts"    1   2   3   4   5   6   7   8   9   10"
-  puts"  -----------------------------------------"
-
-
-  row = (1..10).to_a
-  ship_coords = fleet_positions
-
-
-  letters = ("A |".."J |").to_a
-  row.each do |num|
-
-    boxes = [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "]
-
-    ship_coords.each do |coord|
-      if coord[1] == num
-        boxes[coord[0]-1] = "A"
+    @fleet.each do |ship|
+      ship.show_coords.each do |c|
+        @coordinates << c
       end
-
     end
-
-    puts "#{letters[num-1]} #{boxes[0]} | #{boxes[1]} | #{boxes[2]} | #{boxes[3]} |" +
-    " #{boxes[4]} | #{boxes[5]} | #{boxes[6]} | #{boxes[7]} | #{boxes[8]} | #{boxes[9]} |"
+    return @coordinates
   end
-
-
-
-  puts"  -----------------------------------------"
-end
+  def locations_of_hits
+    return @has_been_shot
+  end
+  def sunk?
+    if @has_been_shot == (self.fleet_positions & @has_been_shot)
+      return true
+    end
+  end
+  def display
+    puts"    1   2   3   4   5   6   7   8   9   10"
+    puts"  -----------------------------------------"
+    row = (1..10).to_a
+    ship_coords = fleet_positions
+    red_xes = locations_of_hits
+    letters = ("A |".."J |").to_a
+    row.each do |num|
+      boxes = [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "]
+      ship_coords.each do |coord|
+        if coord[1] == num
+          boxes[coord[0]-1] = "O"
+        end
+      end
+      red_xes.each do |c|
+        if c[1] == num
+          boxes[c[0]-1] = "X"
+        end
+      end
+      puts "#{letters[num-1]} #{boxes[0]} | #{boxes[1]} | #{boxes[2]} | #{boxes[3]} |" +
+      " #{boxes[4]} | #{boxes[5]} | #{boxes[6]} | #{boxes[7]} | #{boxes[8]} | #{boxes[9]} |"
+    end
+    puts"  -----------------------------------------"
+  end
 end
 board = Board.new
 # board.display
@@ -131,19 +134,18 @@ board = Board.new
 
 
 board.place_ship(Ship.new(2), 3, 6, true)
-board.place_ship(Ship.new(4), 1, 1, true)
-board.place_ship(Ship.new(5), 6, 2, false)
-board.place_ship(Ship.new(3), 7, 4, true)
+board.place_ship(Ship.new(2), 1, 1, true)
 
-board.place_ship(Ship.new(3), 4, 8, true)
-board.fire_at(7, 4)
-board.fire_at(7, 5)
 board.fire_at(3, 6)
-board.fire_at(8, 4)
+board.fire_at(4, 6)
+board.fire_at(1, 1)
+board.fire_at(2, 1)
+
+
 puts "#{board.inspect}"
-
-
-
+puts "#{board.sunk?}"
+#puts"#{board.display}"
+#puts "#{board.inspect}"
 # ship = Ship.new(4)
 # # ship.place(2, 1, true)
 # board.place_ship(Ship.new(4), 2, 1, true)

@@ -2,6 +2,7 @@ class Board
   def initialize()
     @fleet = []
     @has_been_shot = []
+    @is_sunk = false
   end
   def has_ship_on?(x, y)
     covered = false
@@ -46,6 +47,11 @@ class Board
   end
   def locations_of_hits
     return @has_been_shot
+  end
+  def sunk?
+    if @has_been_shot == (self.fleet_positions & @has_been_shot)
+      return true
+    end
   end
   def display
     puts"    1   2   3   4   5   6   7   8   9   10"
