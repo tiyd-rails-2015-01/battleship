@@ -3,7 +3,7 @@ def get_user_input
 end
 
 class Game
-  def initialize(human, computer, default_ships = [2,3,3,4,5])
+  def initialize(human = HumanPlayer.new, computer = ComputerPlayer.new, default_ships = [2,3,3,4,5])
     @human = human
     @computer = computer
     @default_ships = default_ships
@@ -12,9 +12,21 @@ class Game
   def welcome
     puts "Welcome, #{@human.name} and #{@computer.name}!\nIt's time to play Battleship.\n"
   end
+
   def play
-    #all the code it plays
+    self.welcome
+    self.place_ships
+    unless @human.board.sunk? || @computer.board.sunk?
+      self.take_turn
+    end
+    if @human.board.sunk?
+      puts "HAHAHEHAHAHHHAHAHAHAHAHAHAHHAHAHAHAHA"
+    else
+      puts "Congratulations, #{@human.name}! you beat #{@computer.name}!"+
+      "They should probably be less bad."
+    end
   end
+
   def place_ships
       @human.place_ships(@default_ships)
       @computer.place_ships(@default_ships)
@@ -43,6 +55,7 @@ class Game
     end
     @turn_counter += 1
   end
+
 end
 
 #if @ships.empty?

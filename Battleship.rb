@@ -8,7 +8,7 @@ require './ComputerPlayer.rb'
 
 
 
-
+Game.new.play
 
 # player = ComputerPlayer.new
 #  player.place_ships([2, 3, 3, 4, 5])
