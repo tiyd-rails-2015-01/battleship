@@ -110,7 +110,7 @@ class Board
   end
 
   def x_of(coordinates)
-    coordinates.slice(1..coordinates.length).to_i
+    coordinates[1..coordinates.length].to_i
   end
   def y_of(coordinates)
     letters = ["A","B","C","D","E","F","G","H","I","J"]
