@@ -8,6 +8,12 @@ class HumanPlayer <Player
     super(name)
   end
 
+  def display_game_status
+    @hits_board.display
+    puts "\n"
+    @board.display
+  end
+
   def place_ships(ship_lengths)
     self.create_ships(ship_lengths)
     @ships.each do |ship|
@@ -31,7 +37,5 @@ class HumanPlayer <Player
   end
 
 
-    def display_game_status
-      @board.display
-    end
+
 end

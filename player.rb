@@ -4,6 +4,7 @@ class Player
   def initialize(name)
     @name = name
     @board = Board.new
+    @hits_board= Board.new
     @ships = []
   end
 

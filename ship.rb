@@ -48,11 +48,9 @@ class Ship
   def fire_at(x, y)
     if self.covers?(x, y)
       @hit_points -=1
-      puts "Hit!"
-      true
+      hit = true
     else
-      puts "Miss!"
-      false
+      hit = false
     end
   end
 
