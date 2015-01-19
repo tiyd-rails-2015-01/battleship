@@ -8,15 +8,7 @@ require './game.rb'
 # human2 = HumanPlayer.new("Beth")
 # game = Game.new(human1, human2, [2])
 # game.place_ships
-# game.take_turn
-# game.take_turn
-# game.take_turn
-# game.take_turn
-# puts "#{human1.name}:"
-# human1.display_game_status
-# puts "-----------------------------"
-# puts "#{human2.name}:"
-# human2.display_game_status
+# game.play
 
 # player debug ------------------------
  # player = HumanPlayer.new("Alice")

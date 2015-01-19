@@ -8,8 +8,8 @@ class Board
     @ships = [] #array of Ship objects
 
     #if isTargetGrid: 0 = no shot fired at this coord
-    # =>              1 = miss
-    # =>              2 = hit
+    # =>              "-" = miss
+    # =>              "+" = hit
 
     #grid: 0 = no shot fired at this coord
     # =>          1 = ship
@@ -85,32 +85,6 @@ class Board
 
   def display
 
-    # display target grid -------------------------------
-    # letters = ["A","B","C","D","E","F","G","H","I","J"]
-    #
-    # puts "    1   2   3   4   5   6   7   8   9   10"
-    # puts "  -----------------------------------------"
-    #
-    # 10.times do |y|
-    #   thisLine = letters[y] + " "
-    #
-    #   10.times do |x|
-    #     thisLine += "| "
-    #     if @target_grid[y][x] == 0
-    #       thisLine += "  "
-    #     elsif @target_grid[y][x] == 1
-    #       thisLine += "O "
-    #     elsif @target_grid[y][x] == 2
-    #       thisLine += "X "
-    #     end
-    #   end
-    #
-    #   thisLine += "|"
-    #   puts thisLine
-    # end
-    # puts "  -----------------------------------------"
-
-    # display grid --------------------------------
     letters = ["A","B","C","D","E","F","G","H","I","J"]
 
     puts "    1   2   3   4   5   6   7   8   9   10"
@@ -145,16 +119,6 @@ class Board
       thisLine += "|"
       puts thisLine
     end
-    # puts "A |   |   |   |   |   |   |   |   |   |   |"
-    # puts "B |   |   |   |   |   |   |   |   |   |   |"
-    # puts "C |   |   |   |   |   |   |   |   |   |   |"
-    # puts "D |   |   |   |   |   |   |   |   |   |   |"
-    # puts "E |   |   |   |   |   |   |   |   |   |   |"
-    # puts "F |   |   |   |   |   |   |   |   |   |   |"
-    # puts "G |   |   |   |   |   |   |   |   |   |   |"
-    # puts "H |   |   |   |   |   |   |   |   |   |   |"
-    # puts "I |   |   |   |   |   |   |   |   |   |   |"
-    # puts "J |   |   |   |   |   |   |   |   |   |   |"
     puts "  -----------------------------------------"
 
   end
