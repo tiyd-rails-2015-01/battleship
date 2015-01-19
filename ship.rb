@@ -37,7 +37,7 @@ class Ship
       x = coord[0]
       y = coord[1]
       if other_ship.covers?(x, y)
-        puts "Unfortunately, that ship overlaps with one of your other ships. Please try again.\n"
+        puts "Unfortunately, that ship overlaps with one of your other ships. Please try again."
         #something isnt sending the player back to re-place the ship
         #game thinks ships overlap no matter what
         do_they_overlap = true

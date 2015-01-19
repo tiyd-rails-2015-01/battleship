@@ -10,7 +10,8 @@ class Game
     @turn_counter = 0
   end
 
-  #not sure why the game doesnt require players test isnt passing. @human and @computer are required to initialize the game
+  #not sure why the game requires players test isnt passing. @human and @computer are required to initialize the game
+
 
   def welcome
     puts "Welcome, #{@human.name} and #{@computer.name}!\nIt's time to play Battleship.\n"
