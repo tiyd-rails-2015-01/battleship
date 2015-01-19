@@ -39,8 +39,29 @@ class Board
    end
  end
 
- ##here, i went back up to line 29 and added "or" statement aka ||
+ ##Parker for yourself- here, i went back up to line 29 and added "or" statement aka ||
 
+ def display_header
+   puts "    1   2   3   4   5   6   7   8   9   10"
+   puts "  -----------------------------------------"
+ end
+
+ def display
+   display_header
+   y_axis = ('A'..'J').to_a#rray
+   (1..10).each do |row|
+     resulting_row = "#{y_axis[row-1]} |"
+     (1..10).each do |col|
+       resulting_row << "   |"
+     end
+   puts resulting_row
+  end
+  display_footer
+ end
+
+ def display_footer
+   puts "  -----------------------------------------"
+ end
 
 
 
