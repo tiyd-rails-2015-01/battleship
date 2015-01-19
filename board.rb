@@ -8,7 +8,7 @@ class Board
   def initialize
     @ships = []
     @hits = []
-
+    @misses = []
   end
 
   def place_ship(ship, column, row, across)
@@ -50,6 +50,7 @@ class Board
           hit = true
           temp_hits = [column, row]
             if @hits.include?(temp_hits)
+              @misses << temp_hits if !@misses.include?(temp_hits)
               return false
             else
               @hits << temp_hits
@@ -63,6 +64,25 @@ class Board
     end
   end
 
+  def display_hits
+    letters = ["A","B","C","D","E","F","G","H","I","J"]
+    self.display_header
+    (1..10).each do |r|
+      output_row = "#{letters[r-1]} |"
+      (1..10).each do |c|
+        if @hits.include?([c,r])
+          output_row += " + |"
+        elsif @misses.include?([c,r])
+          output_row += " - |"
+        else
+          output_row += "   |"
+        end
+      end
+      puts output_row
+    end
+
+    self.display_bottom
+  end
 
   def display_header
     puts "    1   2   3   4   5   6   7   8   9   10"

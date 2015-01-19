@@ -38,6 +38,9 @@ class HumanPlayer < Player
       end
     end
   end
-
+  def display_game_status
+  self.board.display_hits
+  self.board.display
+  end
 
 end
