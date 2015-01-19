@@ -1,10 +1,6 @@
 class HumanPlayer < Player
-  def initialize(input)
+  attr_accessor :name
+  def initialize(input = "Dave")
     @name = input
   end
-
-  def name
-    return @name
-  end
-
 end
