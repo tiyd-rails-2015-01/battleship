@@ -48,6 +48,8 @@ class Board
           else
             @hits << temp_hits
           end
+        else
+          @misses << [x, y]
       end
       return hit
     end
@@ -84,6 +86,27 @@ class Board
 
   def display_bottom
     puts "  -----------------------------------------"
+  end
+
+  def display_hits
+    letters = ["A","B","C","D","E","F","G","H","I","J"]
+    self.display_header
+    (1..10).each do |y|
+      output_row = "#{letters[y-1]} |"
+      (1..10).each do |x|
+        if @hits.include?([x,y])
+          output_row += " + |"
+        elsif @misses.include?([x,y])
+          output_row += " - |"
+        else
+          output_row += "   |"
+        end
+      end
+      puts output_row
+    end
+
+    self.display_bottom
+
   end
 
 

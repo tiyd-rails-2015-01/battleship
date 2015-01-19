@@ -8,11 +8,6 @@ class HumanPlayer <Player
     super(name)
   end
 
-  def display_game_status
-    @hits_board.display
-    puts "\n"
-    @board.display
-  end
 
   def place_ships(ship_lengths)
     self.create_ships(ship_lengths)
@@ -29,13 +24,16 @@ class HumanPlayer <Player
         else
           across = false
         end
-        @board.place_ship(ship, x, y, across)
+        board.place_ship(ship, x, y, across)
         coordinates = ""
         across = ""
       end
     end
   end
 
+  def display_game_status
+    board.display
+  end
 
 
 end

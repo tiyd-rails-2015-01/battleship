@@ -10,5 +10,9 @@ class ComputerPlayer <Player
     return true
   end
 
+  def hit_board
+    hits_board.display_hits
+  end
+
 
 end

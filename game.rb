@@ -9,6 +9,7 @@ class Game
     @turn= 1
     @play
   end
+  
   def play
     @play
   end
@@ -43,6 +44,10 @@ class Game
       end
     end
     @turn += 1
+  end
+
+  def game_status
+    computer.display_hits
   end
 
 end

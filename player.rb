@@ -16,4 +16,8 @@ class Player
     end
   end
 
+  def hits_board
+    @hits_board.display_hits
+  end
+
 end
