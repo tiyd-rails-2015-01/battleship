@@ -25,15 +25,15 @@ class Board
   def fire_at(x, y)
     if @fleet.empty? || @has_been_shot.include?([x, y])
       return false
-    else @fleet.each do |ship|
-         if ship.fire_at(x, y)
-           @has_been_shot << [x, y]
-           return true
-         else
-           return false
-         end
-       end
+    else
+      @fleet.each do |ship|
+        if ship.fire_at(x, y)
+          @has_been_shot << [x, y]
+          return true
+        end
+      end
     end
+    return false
   end
   def fleet_positions
     coordinates = []
@@ -47,12 +47,8 @@ class Board
   def display
     puts"    1   2   3   4   5   6   7   8   9   10"
     puts"  -----------------------------------------"
-
-
     row = (1..10).to_a
     ship_coords = fleet_positions
-
-
     letters = ("A |".."J |").to_a
     row.each do |num|
 
@@ -68,9 +64,6 @@ class Board
       puts "#{letters[num-1]} #{boxes[0]} | #{boxes[1]} | #{boxes[2]} | #{boxes[3]} |" +
       " #{boxes[4]} | #{boxes[5]} | #{boxes[6]} | #{boxes[7]} | #{boxes[8]} | #{boxes[9]} |"
     end
-
-
-
     puts"  -----------------------------------------"
   end
 end
