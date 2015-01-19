@@ -5,6 +5,7 @@ class Board
   def initialize()
     @fleet = []
     @cells_with_ships = []
+    @shots_taken = []
 
   end
 
@@ -14,11 +15,8 @@ class Board
         @fleet << ship
         return true
       else
-
         return false
-
       end # if ship.covers?
-
       end # else end
     end # if @ships.each
   end # def
@@ -37,14 +35,18 @@ class Board
   end # def end
 
   def fire_at(x, y)
-    if @fleet.each do |fire|
-      if fire.fire_at(ship)
-        @fleet << ship
-        return true
-      else
-        return false
-      end
+    if @shots_taken.include?([x, y])
+      return false
+    else
+      @shots_taken << [x, y]
+      @fleet.each do |ship|
+        if ship.fire_at(x, y)
+          return true
+        end
       end
     end # @fleet end
+    return false
   end # def end
+
+
 end # class end
