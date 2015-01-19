@@ -1,3 +1,5 @@
+require './board.rb'
+
 class Ship
 
   def initialize(length)
@@ -53,22 +55,4 @@ class Ship
       return true
     end
   end
-end
-
-class Board
-
-  def initialize()
-    @ships = []
-
-  end
-
-  def has_ship_on?(x, y)
-
-    @ships.each do |ships|
-      if ships.covers?([x, y])
-        return ships
-      end
-    end
-  end
-
 end

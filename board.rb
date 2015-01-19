@@ -1,10 +1,19 @@
-  class Board
+require './battleship.rb'
 
-    def initialize(emptyboard)
-      @empty_board = emptyboard
-    end
+class Board
 
-    def has_ship_on?
-      return @emptyboard
+  def initialize()
+    @ships = []
+
+  end
+
+  def has_ship_on?(x, y)
+
+    @ships.each do |ships|
+      if ships.covers?([x, y])
+        return ships
+      end
     end
   end
+
+end
