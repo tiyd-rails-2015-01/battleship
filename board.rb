@@ -4,6 +4,7 @@ class Board
     @fleet = []
     @shots_fired = []
     @coordinates_of_ships = []
+    @sunk = []
   end
 
   def has_ship_on?(x_axis, y_axis)
@@ -19,16 +20,16 @@ class Board
   def place_ship(ship, x_axis, y_axis, across)
     ship.place(x_axis, y_axis, across)
     conflict = false
-    if board_conflict(ship) == true
+    if board_conflict?(ship) == true
       conflict = true
     else
       @fleet << ship
       add_coordinates_of_ships
-      return true
+      # return true
     end
   end
 
-  def board_conflict(ship)
+  def board_conflict?(ship)
     ship.coordinates.each do |coord|
       @coordinates_of_ships.include?(coord)
     end
@@ -97,21 +98,36 @@ class Board
 
   def full_board
     header = ["A |","B |","C |","D |","E |","F |","G |","H |","I |","J |"]
-    10.times do |y|
-      print header[y]
-      #header
-        10.times do |x|
-          if @coordinates_of_ships.include?([x,y]) #&& !@shots_fired.include?([x,y])
+    (1..10).each do |y|
+      print header[y-1]
+      header
+        (1..10).each do |x|
+          if @coordinates_of_ships.include?([x,y]) && !@shots_fired.include?([x,y])
             print " O |"
-          #elsif @coordinates_of_ships.include?([x,y]) && @shots_fired.include?([x,y])
-          # print " X |"
+          elsif @coordinates_of_ships.include?([x,y]) && @shots_fired.include?([x,y])
+           print " X |"
           else
            print "   |"
           end
         end
-      puts "\n"
+      print "\n"
     end
   end
+
+  def sunk?
+    puts "#{@fleet}"
+    sunk = false
+    if @shots_fired.empty?
+      sunk = false
+    else
+      @fleet.each do |sunk|
+      @hit_counter == @length
+      sunk = true
+      end
+      # return true
+    end
+  end
+
 end
 
 #

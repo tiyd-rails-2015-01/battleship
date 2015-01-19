@@ -43,9 +43,8 @@ class Ship
       if ship.covers?(x_axis, y_axis)
         overlap = true
       end
-      return overlap
     end
-
+    return overlap
   end
 
   def fire_at(x_axis, y_axis)
