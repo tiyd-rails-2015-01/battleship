@@ -1,10 +1,19 @@
+def get_user_input
+  gets.chomp
+end
+
 class Player
   def initialize
   end
 end
 
 class HumanPlayer < Player
-  def initialize
+  def initialize(name)
+    @name = name
+  end
+
+  def name
+    return @name
   end
 end
 
