@@ -28,8 +28,10 @@ class Game
       row = @computer.board.y_of(coords)
       if @computer.board.fire_at(column, row)
         puts "That's a Hit!"
+        @human.shots_hit << [column, row]
       else
         puts "That's a Miss!"
+        @human.shots_missed << [column, row]
       end
 
     else
@@ -37,8 +39,10 @@ class Game
       row = rand(1..10)
       if @human.board.fire_at(column, row)
         puts "That's a Hit!"
+        @computer.shots_hit << [column, row]
       else
         puts "That's a Miss!"
+        @computer.shots_missed << [column, row]
       end
     end
     @turn_counter += 1

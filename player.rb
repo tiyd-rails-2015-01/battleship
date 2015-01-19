@@ -1,11 +1,13 @@
 
 class Player
-  attr_accessor :ships, :name, :board
+  attr_accessor :ships, :name, :board, :shots_hit, :shots_missed
 
   def initialize(name)
     @name = name
     @board = Board.new
     @ships = []
+    @shots_hit = []
+    @shots_missed = []
   end
 
   def create_ships(ship_lengths)

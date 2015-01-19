@@ -38,8 +38,30 @@ class HumanPlayer < Player
       end
     end
   end
+
+  def display_hits
+    letters = ["A","B","C","D","E","F","G","H","I","J"]
+    self.board.display_header
+    (1..10).each do |r|
+      output_row = "#{letters[r-1]} |"
+      (1..10).each do |c|
+        #puts "#{@hits}"
+        if @shots_hit.include?([c,r])
+          output_row += " + |"
+        elsif @shots_missed.include?([c,r])
+          output_row += " - |"
+        else
+          output_row += "   |"
+        end
+      end
+      puts output_row
+    end
+
+    self.board.display_bottom
+  end
+
   def display_game_status
-  self.board.display_hits
+  self.display_hits
   self.board.display
   end
 
