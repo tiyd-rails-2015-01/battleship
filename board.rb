@@ -1,5 +1,9 @@
 require './ship.rb'
 
+def get_user_input
+  gets.chomp
+end
+
 class Board
   def initialize
     @ships = []
@@ -37,6 +41,7 @@ class Board
 
   def fire_at (column, row) #change to track misses
     hit = false
+    #miss = true
     if @ships.empty?
       false
     else
@@ -52,6 +57,7 @@ class Board
           #puts "#{@hits}"
         end
         #puts "hits array is#{@hits}~~~~~"
+
         return hit
       end
     end

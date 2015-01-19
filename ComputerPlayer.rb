@@ -18,5 +18,4 @@ class ComputerPlayer < Player
     puts "#{@name} has placed his ships.\n"
     return true
   end
-
 end
