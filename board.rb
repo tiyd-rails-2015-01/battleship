@@ -1,10 +1,12 @@
  require './ship.rb'
 
 class Board
+  attr_reader :hits, :misses
 
   def initialize
     @ships = []
-    @hit = []
+    @hits = []
+    @misses = []
   end
 
   def place_ship(ship, x, y, across)
@@ -33,17 +35,25 @@ class Board
     return has_ship_on
   end
 
-  def fire_at(x, y)
-    if @ships.empty? || @hit.include?([x, y])
-    return false
+  def fire_at (x, y)
+    is_hit = [x, y]
+    hit = false
+    if @ships.empty?
+      return false
     else
       @ships.each do |ship|
-        if ship.fire_at(x, y)
-          @hit << [x, y]
-          return true
+        if ship.covers?(x, y)
+          hit = true
+          if @hits.include?(is_hit)
+            return false
+          else
+            @hits << is_hit
+          end
         else
+          @misses << is_hit if !@misses.include?(is_hit)
           return false
         end
+        return hit
       end
     end
   end
@@ -59,7 +69,7 @@ class Board
     (1..10).each do |r|
       output_row = "#{letters[r-1]} |"
       (1..10).each do |c|
-        if @hit.include?([c,r])
+        if @hits.include?([c,r])
           output_row += " X |"
         elsif self.has_ship_on?(c,r)
           output_row += " O |"
@@ -79,10 +89,10 @@ class Board
   end
 
   def sunk?
-    if @hit.empty?
+    if @hits.empty?
       return false
     else
-      @hit.length == self.ship_points
+      @hits.length == self.ship_points
     end
   end
 

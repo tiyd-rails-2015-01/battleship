@@ -1,10 +1,10 @@
 class Ship
-  attr_reader :covered_coordinates
+  attr_reader :covered_coordinates, :placed, :length
   def initialize(length)
     @length = length
     @covered_coordinates = []
     @placed = false
-    @ship_hits = []
+    @ship_hits = 0
   end
 
   def length
@@ -37,6 +37,9 @@ class Ship
       x = coord[0]
       y = coord[1]
       if other_ship.covers?(x, y)
+        puts "Unfortunately, that ship overlaps with one of your other ships. Please try again.\n"
+        #something isnt sending the player back to re-place the ship
+        #game thinks ships overlap no matter what
         do_they_overlap = true
       end
     end
@@ -47,7 +50,7 @@ class Ship
     is_ship_hit = false
     if @covered_coordinates.include? [x, y]
         is_ship_hit = true
-        @ship_hits << [x, y]
+        @ship_hits += 1
     end
     return is_ship_hit
 
@@ -55,7 +58,7 @@ class Ship
 
   def sunk?
     ship_sunk = false
-    if @ship_hits == @covered_coordinates
+    if @ship_hits == @length
       sunk = true
     end
     return sunk
