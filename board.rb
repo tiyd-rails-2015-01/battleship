@@ -1,10 +1,10 @@
 class Board
-  attr_accessor :shots_fired, :fleet, :coordinates_of_ships
+  attr_accessor :shots_fired, :fleet
   def initialize
     @fleet = []
     @shots_fired = []
-    @coordinates_of_ships = []
     #@sunk = []
+    @coordinates
   end
 
   def place_ship(ship, x_axis, y_axis, across)
@@ -44,12 +44,13 @@ class Board
   # end
 
   def add_coordinates_of_ships
+    coords = []
     @fleet.each do |ship|
       ship.coordinates.each do |coord|
-        @coordinates_of_ships << coord
+        coords << coord
       end
     end
-    return @coordinates_of_ships
+    return coords
   end
 
   def fire_at(x_axis, y_axis)
@@ -87,33 +88,33 @@ class Board
     puts "  -----------------------------------------"
   end
 
-  def empty_board
-    puts "A |   |   |   |   |   |   |   |   |   |   |"
-    puts "B |   |   |   |   |   |   |   |   |   |   |"
-    puts "C |   |   |   |   |   |   |   |   |   |   |"
-    puts "D |   |   |   |   |   |   |   |   |   |   |"
-    puts "E |   |   |   |   |   |   |   |   |   |   |"
-    puts "F |   |   |   |   |   |   |   |   |   |   |"
-    puts "G |   |   |   |   |   |   |   |   |   |   |"
-    puts "H |   |   |   |   |   |   |   |   |   |   |"
-    puts "I |   |   |   |   |   |   |   |   |   |   |"
-    puts "J |   |   |   |   |   |   |   |   |   |   |"
-  end
+  # def empty_board
+  #   puts "A |   |   |   |   |   |   |   |   |   |   |"
+  #   puts "B |   |   |   |   |   |   |   |   |   |   |"
+  #   puts "C |   |   |   |   |   |   |   |   |   |   |"
+  #   puts "D |   |   |   |   |   |   |   |   |   |   |"
+  #   puts "E |   |   |   |   |   |   |   |   |   |   |"
+  #   puts "F |   |   |   |   |   |   |   |   |   |   |"
+  #   puts "G |   |   |   |   |   |   |   |   |   |   |"
+  #   puts "H |   |   |   |   |   |   |   |   |   |   |"
+  #   puts "I |   |   |   |   |   |   |   |   |   |   |"
+  #   puts "J |   |   |   |   |   |   |   |   |   |   |"
+  # end
 
   def bottom_line
     puts "  -----------------------------------------"
   end
 
   def full_board
-    add_coordinates_of_ships
+    coords = add_coordinates_of_ships
     header = ["A |","B |","C |","D |","E |","F |","G |","H |","I |","J |"]
     (1..10).each do |y|
       print header[y-1]
       header
         (1..10).each do |x|
-          if @coordinates_of_ships.include?([x,y]) && !@shots_fired.include?([x,y])
+          if coords.include?([x,y]) && !@shots_fired.include?([x,y])
             print " O |"
-          elsif @coordinates_of_ships.include?([x,y]) && @shots_fired.include?([x,y])
+          elsif coords.include?([x,y]) && @shots_fired.include?([x,y])
            print " X |"
           else
            print "   |"
@@ -124,18 +125,14 @@ class Board
   end
 
   def sunk?
-    puts "#{@fleet}"
-    puts "#{@shots_fired}"
-    puts "#{@coordinates_of_ships}"
-    sunk = false
     if @shots_fired.empty?
-      sunk = false
+      return false
     else
-      @fleet.each do |sunk|
-      @hit_counter == 0
-      sunk = true
+      if @shots_fired.sort == add_coordinates_of_ships.sort
+        return true
+      else
+        return false
       end
-      # return true
     end
   end
 
@@ -143,13 +140,13 @@ end
 
 #
 # #
-# board = Board.new
+ #board = Board.new
 # ship1 = Ship.new(2)
 # board.test_class(ship1, 3, 3, true)
 # # ship2 = Ship.new(5)
 # # ship2.place(7,3,true)
 # # board.test_class(ship2)
-# puts "#{board.inspect}"
+ #puts "#{board.inspect}"
 # # board.fleet << ship1
 #
 # # ship1.place(3,6,true)
@@ -161,6 +158,6 @@ end
 # # board.place_ship(Ship.new(4), 1, 1, true)
 # # board.place_ship(Ship.new(5), 6, 2, false)
 # board.display
-# # board.top_lines
-# # board.full_board
-# # board.bottom_line
+# board.top_lines
+# board.full_board
+# board.bottom_line

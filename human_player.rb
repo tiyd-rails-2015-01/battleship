@@ -1,8 +1,8 @@
 require './player'
 
-class HumanPlayer
+class HumanPlayer<Player
   def initialize(name)
 
   end
-  
+
 end

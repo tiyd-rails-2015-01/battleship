@@ -11,5 +11,5 @@ board.place_ship(Ship.new(4), 1, 1, true)
 board.place_ship(Ship.new(5), 6, 2, false)
 board.display
 puts '---'
-puts board.coordinates_of_ships
+puts board.add_coordinates_of_ships
 puts '---'

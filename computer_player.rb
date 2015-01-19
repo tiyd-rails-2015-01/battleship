@@ -1,5 +1,5 @@
 require'./player'
-class ComputerPlayer
+class ComputerPlayer<Player
   def initialize
 
   end
