@@ -1,10 +1,12 @@
 require './ship.rb'
 
+
 def get_user_input
   gets.chomp
 end
 
 class Board
+  attr_reader :misses, :hits
   def initialize
     @ships = []
     @hits = []
@@ -50,12 +52,13 @@ class Board
           hit = true
           temp_hits = [column, row]
             if @hits.include?(temp_hits)
-              @misses << temp_hits if !@misses.include?(temp_hits)
               return false
             else
               @hits << temp_hits
             end
-          #puts "#{@hits}"
+        else
+          @misses << temp_hits if !@misses.include?(temp_hits)
+          return false
         end
         #puts "hits array is#{@hits}~~~~~"
 
