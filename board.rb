@@ -21,8 +21,8 @@ class Board
       end
     end
     @fleet << ship
-    ship.show_coords.each do |potato|
-      @coordinates << potato
+    ship.show_coords.each do |s|
+      @coordinates << s
     end
     return true
   end
