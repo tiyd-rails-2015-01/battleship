@@ -14,15 +14,13 @@ class Board
   end
 
   def has_ship_on?(x, y)
-    if @fleet.each do |ship|
+    ship_on = false
+    @fleet.each do |ship|
       if ship.covers?(x, y)
-        @fleet << ship
-        return true
-      else
-        return false
+        ship_on = true
       end # if ship.covers?
-      end # else end
-    end # if @ships.each
+    end # else end
+    return ship_on
   end # def
 
   def place_ship(ship, x, y, direction)
@@ -39,17 +37,22 @@ class Board
   end # def end
 
   def fire_at(x, y)
+    if @fleet.empty?
+      return false
+    end
     if @shots_taken.include?([x, y])
       return false
     else
-      @shots_taken << [x, y]
       @fleet.each do |ship|
-        if ship.fire_at(x, y)
+        if ship.covers?(x, y)
+          @shots_taken << [x, y]
           return true
+        else
+          @shots_taken << [x, y]
+          return false
         end
       end
-    end # @fleet end
-    return false
+    end #
   end # def end
 
   def display_header
@@ -57,26 +60,31 @@ class Board
     puts "  -----------------------------------------"
   end
 
-  def display_rows
-    letters = ("A".."J").to_a
-    letters.each do |l|
-      print "#{l} |"
-      10.times do
-        print "   |"
-      end
-      print "\n"
-    end
-
-  end
-
   def display_footer
     puts "  -----------------------------------------"
   end
-  def display
-    display_header
-    display_rows
-    display_footer
 
+  def display
+    letters = ("A".."J").to_a
+    output = ""
+    self.display_header
+    (1..10).each do |row|
+      output = "#{letters[row - 1]} |"
+      (1..10).each do |column|
+        if @shots_taken.include?([column, row]) && self.has_ship_on?(column, row)
+          output << " X |"
+        elsif has_ship_on?(column, row)
+          output << " O |"
+        else
+          output << "   |"
+        end
+      end
+       # print "\n"
+      puts output
+    end
+    self.display_footer
   end
+
+
 
 end # class end
