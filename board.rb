@@ -54,6 +54,9 @@ class Board
       end
     end
   end
+  def x_of(string_coords)
+    string_coords.scan( /\d+$/ ).first.to_i
+  end
   def display
     puts"    1   2   3   4   5   6   7   8   9   10"
     puts"  -----------------------------------------"
