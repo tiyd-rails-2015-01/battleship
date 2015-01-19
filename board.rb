@@ -21,6 +21,9 @@ class Board
       end
     end
     @fleet << ship
+    ship.show_coords.each do |potato|
+      @coordinates << potato
+    end
     return true
   end
   def fire_at(x, y)
@@ -51,8 +54,10 @@ class Board
     if @has_been_shot.empty?
       return false
     else
-      if @has_been_shot.sort == self.fleet_positions.sort
+      if @has_been_shot.sort == @coordinates.sort
         return true
+      else
+        return false
       end
     end
   end

@@ -105,6 +105,8 @@ class Board
     else
       if @has_been_shot.sort == self.fleet_positions.sort
         return true
+      else
+        return false
       end
     end
   end
@@ -141,12 +143,13 @@ board = Board.new
 board.place_ship(Ship.new(2), 6, 4, true)
 
 
-
+#puts "apple #{board.sunk?}"
 board.fire_at(6, 4)
+#puts "banana #{board.sunk?}"
 board.fire_at(7, 4)
 
 
-# puts "#{board.inspect}"
+puts "cashew #{board.inspect}"
 puts "#{board.sunk?}"
 puts"#{board.display}"
 #puts "#{board.inspect}"
