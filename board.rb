@@ -57,6 +57,31 @@ class Board
   def x_of(string_coords)
     string_coords.scan( /\d+$/ ).first.to_i
   end
+  def y_of(string_coords)
+    letter = string_coords.scan( /[[:upper:]]/ ).first
+    case letter
+    when "A"
+      return 1
+    when "B"
+      return 2
+    when "C"
+      return 3
+    when "D"
+      return 4
+    when "E"
+      return 5
+    when "F"
+      return 6
+    when "G"
+      return 7
+    when "H"
+      return 8
+    when "I"
+      return 9
+    when "J"
+      return 10
+    end
+  end
   def display
     puts"    1   2   3   4   5   6   7   8   9   10"
     puts"  -----------------------------------------"
