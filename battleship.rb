@@ -4,15 +4,19 @@ require './player.rb'
 require './game.rb'
 
 # game debug --------------------------
-human1 = HumanPlayer.new("Amy")
-human2 = HumanPlayer.new("Beth")
-game = Game.new(human1, human2, [2])
-game.place_ships
-game.take_turn
-game.take_turn
-game.take_turn
-game.take_turn
-human1.display_game_status
+# human1 = HumanPlayer.new("Amy")
+# human2 = HumanPlayer.new("Beth")
+# game = Game.new(human1, human2, [2])
+# game.place_ships
+# game.take_turn
+# game.take_turn
+# game.take_turn
+# game.take_turn
+# puts "#{human1.name}:"
+# human1.display_game_status
+# puts "-----------------------------"
+# puts "#{human2.name}:"
+# human2.display_game_status
 
 # player debug ------------------------
  # player = HumanPlayer.new("Alice")

@@ -30,28 +30,28 @@ class Game
 
     if @player1Goes
       @player1Goes = false
-      x = @player1.board.x_of( coord )
-      y = @player1.board.y_of( coord )
-      if @player1.board.fire_at( x, y )
-        puts "Hit!"
-        @player2.board.mark_target_board(x,y,2)
-        return
-      else
-        puts "Miss!"
-        @player2.board.mark_target_board(x,y,1)
-        return
-      end
-    else
-      @player1Goes = true
       x = @player2.board.x_of( coord )
       y = @player2.board.y_of( coord )
       if @player2.board.fire_at( x, y )
         puts "Hit!"
-        @player1.board.mark_target_board(x,y,2)
+        @player1.target_board.mark_target_board(x,y,"+")
         return
       else
         puts "Miss!"
-        @player1.board.mark_target_board(x,y,1)
+        @player1.target_board.mark_target_board(x,y,"-")
+        return
+      end
+    else
+      @player1Goes = true
+      x = @player1.board.x_of( coord )
+      y = @player1.board.y_of( coord )
+      if @player1.board.fire_at( x, y )
+        puts "Hit!"
+        @player2.target_board.mark_target_board(x,y,"+")
+        return
+      else
+        puts "Miss!"
+        @player2.target_board.mark_target_board(x,y,"-")
         return
       end
     end

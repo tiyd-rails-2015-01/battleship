@@ -41,6 +41,7 @@ end
 class HumanPlayer < Player
 
   attr_reader :board
+  attr_reader :target_board
 
   def initialize( name = "Dave" )
     @name = name
@@ -86,7 +87,8 @@ end
 class ComputerPlayer < Player
 
   attr_reader :board
-
+  attr_reader :target_board
+  
   def initialize
     @name = "HAL 9000"
     @board = Board.new

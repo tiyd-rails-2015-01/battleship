@@ -56,11 +56,11 @@ class Board
     return true
   end
 
-  def mark_target_board(x,y,hitOrMiss) #hitOrMiss = 1 for miss, 2 for hit
-    if hitOrMiss == 1
-      @grid[y-1][x-1] = 1
-    elsif hitOrMiss == 2
-      @grid[y-1][x-1] = 2
+  def mark_target_board(x,y,hitOrMiss) #hitOrMiss = - for miss, + for hit
+    if hitOrMiss == "-"
+      @grid[y-1][x-1] = "-"
+    elsif hitOrMiss == "+"
+      @grid[y-1][x-1] = "+"
     else #this should never happen
       @grid[y-1][x-1] = 3
     end
@@ -135,6 +135,10 @@ class Board
           else
             thisLine += "X "
           end
+        elsif @grid[y][x] == "+"
+          thisLine += "+ "
+        elsif @grid[y][x] == "-"
+          thisLine += "- "
         end
       end
 
