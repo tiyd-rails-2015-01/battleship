@@ -6,4 +6,8 @@ class ComputerPlayer < Player
   def name
     @name
   end
+
+  def board
+    Board.new
+  end
 end
