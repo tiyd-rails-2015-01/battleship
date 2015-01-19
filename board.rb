@@ -35,4 +35,16 @@ class Board
       @cells_with_ships << s
     end
   end # def end
+
+  def fire_at(x, y)
+    if @fleet.each do |fire|
+      if fire.fire_at(ship)
+        @fleet << ship
+        return true
+      else
+        return false
+      end
+      end
+    end # @fleet end
+  end # def end
 end # class end
