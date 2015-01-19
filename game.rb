@@ -22,11 +22,8 @@ class Game
 
   def take_turn
     if @turn_counter.even?
-      puts "Where would you like to fire #{@name}"
-      coords = get_user_input
-      column = @computer.board.x_of(coords)
-      row = @computer.board.y_of(coords)
-      if @computer.board.fire_at(column, row)
+      coords = @human.turn
+      if @computer.board.fire_at(coords[0], coords[1])
         puts "That's a Hit!"
         @human.shots_hit = @computer.board.hits
       else
@@ -35,9 +32,8 @@ class Game
       end
 
     else
-      column = rand(1..10)
-      row = rand(1..10)
-      if @human.board.fire_at(column, row)
+      coords = @computer.turn
+      if @human.board.fire_at(coords[0], coords[1])
         puts "That's a Hit!"
         @computer.shots_hit = @human.board.hits
       else

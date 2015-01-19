@@ -17,7 +17,13 @@ class Player
       end
     end
   end
-
+  def turn
+    puts "Where would you like to fire #{@name}"
+    coords = get_user_input
+    column = self.board.x_of(coords)
+    row = self.board.y_of(coords)
+    return [column, row]
+  end
 
 end
 

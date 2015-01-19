@@ -62,6 +62,7 @@ class HumanPlayer < Player
 
   def display_game_status
   self.display_hits
+  puts ""
   self.board.display
   end
 

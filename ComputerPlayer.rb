@@ -18,4 +18,9 @@ class ComputerPlayer < Player
     puts "#{@name} has placed his ships.\n"
     return true
   end
+  def turn
+    column = rand(1..10)
+    row = rand(1..10)
+    return [column, row]
+  end
 end

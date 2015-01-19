@@ -42,6 +42,7 @@ class Board
   end
 
   def fire_at (column, row) #change to track misses
+    temp_hits = [column, row]
     hit = false
     #miss = true
     if @ships.empty?
@@ -50,7 +51,6 @@ class Board
       @ships.each do |ship|
         if ship.covers?(column, row)
           hit = true
-          temp_hits = [column, row]
             if @hits.include?(temp_hits)
               return false
             else
