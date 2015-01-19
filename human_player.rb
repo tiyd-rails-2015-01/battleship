@@ -32,6 +32,8 @@ class HumanPlayer <Player
   end
 
   def display_game_status
+    board.display_hits
+    puts "\n"
     board.display
   end
 
