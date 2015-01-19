@@ -28,8 +28,13 @@ class Ship
     end # if @place == false
   end # def place
 
+  def coordinates
+    @coordinates
+  end
+  
   def covers?(x, y)
-    @coordinates.include? [x, y]
+    search_for = [x, y]
+    @coordinates.include?(search_for)
   end
 
   def overlaps_with?(ship)

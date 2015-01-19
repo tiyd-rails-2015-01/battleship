@@ -1,17 +1,17 @@
-require './battleship.rb'
+require './ship.rb'
 
 class Board
 
   def initialize()
-    @ships = []
+    @fleet = []
+    @cells_with_ships = []
 
   end
 
   def has_ship_on?(x, y)
-
-    if @ships.each do |ship|
-      if ship.covers?([x, y])
-        @ships << ship
+    if @fleet.each do |ship|
+      if ship.covers?(x, y)
+        @fleet << ship
         return true
       else
 
@@ -23,20 +23,16 @@ class Board
     end # if @ships.each
   end # def
 
-  def place_ship(ship, x, y, horiz)
-    ship.place(x, y, horiz)
-    @ships.each do |ship|
-      if ship.overlaps_with?(ship)
+  def place_ship(ship, x, y, direction)
+    ship.place(x, y, direction)
+    @fleet.each do |s|
+      if s.overlaps_with?(ship)
         return false
-        end # if end
       end # if end
-      @ships << ship
     end # do end
+    @fleet << ship
+    ship.coordinates.each do |s|
+      @cells_with_ships << s
+    end
   end # def end
 end # class end
-
-
-
-
-  end
-end # class
