@@ -39,14 +39,6 @@ class Board
     end
     return false
   end
-  def fleet_positions
-    @fleet.each do |ship|
-      ship.show_coords.each do |c|
-        @coordinates << c
-      end
-    end
-    return @coordinates
-  end
   def locations_of_hits
     return @has_been_shot
   end
@@ -65,12 +57,11 @@ class Board
     puts"    1   2   3   4   5   6   7   8   9   10"
     puts"  -----------------------------------------"
     row = (1..10).to_a
-    ship_coords = fleet_positions
     red_xes = locations_of_hits
     letters = ("A |".."J |").to_a
     row.each do |num|
       boxes = [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "]
-      ship_coords.each do |coord|
+      @coordinates.each do |coord|
         if coord[1] == num
           boxes[coord[0]-1] = "O"
         end
