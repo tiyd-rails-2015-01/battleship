@@ -1,20 +1,13 @@
 class ComputerPlayer <Player
 
-  def name
-    @name= "HAL 9000"
+  def initialize
+    super("HAL 9000")
   end
 
-  def board
-    Board.new
-  end
-
-  def place_ships(lengths= [2, 3, 3, 4, 5])
+  def place_ships(ship_lengths=[2, 3, 3, 4, 5])
+    self.create_ships(ship_lengths)
     puts "HAL 9000 has placed his ships.\n"
-    lengths.each do |length|
-      ship= Ship.new(length)
-      @ships << ship
-      successful=true
-    end
+    return true
   end
 
 

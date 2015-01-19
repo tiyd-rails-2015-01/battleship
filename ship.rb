@@ -1,8 +1,11 @@
 class Ship
+  attr_accessor :length, :covered_coordinates, :placed
+
   def initialize(length)
     @length=length
     @hit_points= @length
     @covered_coordinates = []
+    @placed= false
   end
 
   def length
@@ -11,19 +14,16 @@ class Ship
 
   def place(x, y, across)
     @across= across
-    if @covered_coordinates== []
+    if @placed==false
+      @placed=true
+      @length.times do |i|
         if across
-          (x..x+@length-1).to_a.each do |coord|
-            @covered_coordinates << [coord, y]
-          end
-
+          @covered_coordinates << [x+ i, y]
         else
-          @covered_y_coordinates= (y..y+@length-1).to_a
-          @covered_y_coordinates.each do |coord|
-            @covered_coordinates<<[x, coord]
-          end
+          @covered_coordinates<<[x, y + i]
         end
       end
+    end
   end
 
   def covers?(x, y)
@@ -32,21 +32,26 @@ class Ship
     end
   end
 
-  def overlaps_with?(ship)
-    @ship=ship
+  def overlaps_with?(other_ship)
+    overlaps=false
     @covered_coordinates.each do |square|
-      if ship.covers?(square[0], square[1])
-        return true
+      x = square[0]
+      y = square[1]
+      if other_ship.covers?(x, y)
+        puts "Unfortunately, that ship overlaps with one of your other ships.  Please try again."
+        overlaps= true
       end
     end
-    return false
+    return overlaps
   end
 
   def fire_at(x, y)
     if self.covers?(x, y)
       @hit_points -=1
+      puts "Hit!"
       true
     else
+      puts "Miss!"
       false
     end
   end

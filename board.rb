@@ -1,25 +1,32 @@
 class Board
+  attr_accessor :ships
   def initialize
-    @fleet=[]
+    @ships=[]
     @hits= []
     @misses= []
   end
+
   def place_ship(ship,x,y, across)
     ship.place(x,y, across)
     conflict= false
-      @fleet.each do |existing_ship|
+      @ships.each do |existing_ship|
         if existing_ship.overlaps_with?(ship)
           conflict= true
         end
       end
       if !conflict
-        @fleet<< ship
+        @ships << ship
+        return true
+      else
+        ship.placed = false
+        ship.covered_coordinates = []
+        return false
       end
   end
 
   def has_ship_on?(x,y)
     covered= false
-    @fleet.each do |s|
+    @ships.each do |s|
       if s.covers?(x,y)
       covered= true
     end
@@ -29,10 +36,10 @@ class Board
 
   def fire_at(x, y)
     hit= false
-    if @fleet.empty?
+    if @ships.empty?
       false
     else
-      @fleet.each do |ship|
+      @ships.each do |ship|
       if ship.covers?(x,y)
         hit = true
         temp_hits = [x, y]
@@ -90,43 +97,23 @@ class Board
 
   def ship_length
     ship_length = 0
-    @fleet.each do |i|
+    @ships.each do |i|
       ship_length += i.length
     end
     return ship_length
   end
 
   def x_of(coordinates)
-    coordinates.split ""
-    x= coordinates[1,2].to_i
-    return x
+    coordinates.slice(1..coordinates.length).to_i
   end
-
   def y_of(coordinates)
-    coordinates.split ""
+    letters = ["A","B","C","D","E","F","G","H","I","J"]
     y = coordinates[0]
-    if y == "A"
-      y = 1
-    elsif y == "B"
-      y = 2
-    elsif y == "C"
-      y = 3
-    elsif y == "D"
-      y = 4
-    elsif y == "E"
-      y = 5
-    elsif y == "F"
-      y = 6
-    elsif y == "G"
-      y = 7
-    elsif y == "H"
-      y = 8
-    elsif y == "I"
-      y = 9
-    elsif y == "J"
-      y = 10
+    letters.each_with_index do |l , index|
+      if y == l
+        return (index + 1)
+      end
     end
-    return y
   end
 
 end
