@@ -3,7 +3,6 @@ class Ship
     @length = length
     @coordinates_covered = []
     @has_been_placed = false
-    @is_sunk = false
     @red_pegs = []
   end
   def length

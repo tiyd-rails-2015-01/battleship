@@ -3,7 +3,7 @@ class Ship
     @length = length
     @coordinates_covered = []
     @has_been_placed = false
-    @is_sunk = false
+
     @red_pegs = []
   end
   def length
@@ -95,12 +95,17 @@ class Board
     end
     return @coordinates
   end
+
   def locations_of_hits
     return @has_been_shot
   end
   def sunk?
-    if @has_been_shot == (self.fleet_positions & @has_been_shot)
-      return true
+    if @has_been_shot.empty?
+      return false
+    else
+      if @has_been_shot.sort == self.fleet_positions.sort
+        return true
+      end
     end
   end
   def display
@@ -133,18 +138,17 @@ board = Board.new
 # board.place_ship(Ship.new(2), 3, 6, true)
 
 
-board.place_ship(Ship.new(2), 3, 6, true)
-board.place_ship(Ship.new(2), 1, 1, true)
-
-board.fire_at(3, 6)
-board.fire_at(4, 6)
-board.fire_at(1, 1)
-board.fire_at(2, 1)
+board.place_ship(Ship.new(2), 6, 4, true)
 
 
-puts "#{board.inspect}"
+
+board.fire_at(6, 4)
+board.fire_at(7, 4)
+
+
+# puts "#{board.inspect}"
 puts "#{board.sunk?}"
-#puts"#{board.display}"
+puts"#{board.display}"
 #puts "#{board.inspect}"
 # ship = Ship.new(4)
 # # ship.place(2, 1, true)

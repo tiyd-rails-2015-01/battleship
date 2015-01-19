@@ -2,7 +2,7 @@ class Board
   def initialize()
     @fleet = []
     @has_been_shot = []
-    @is_sunk = false
+    @coordinates = []
   end
   def has_ship_on?(x, y)
     covered = false
@@ -37,20 +37,23 @@ class Board
     return false
   end
   def fleet_positions
-    coordinates = []
     @fleet.each do |ship|
       ship.show_coords.each do |c|
-        coordinates << c
+        @coordinates << c
       end
     end
-    return coordinates
+    return @coordinates
   end
   def locations_of_hits
     return @has_been_shot
   end
   def sunk?
-    if @has_been_shot == (self.fleet_positions & @has_been_shot)
-      return true
+    if @has_been_shot.empty?
+      return false
+    else
+      if @has_been_shot.sort == self.fleet_positions.sort
+        return true
+      end
     end
   end
   def display
