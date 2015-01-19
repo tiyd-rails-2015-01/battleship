@@ -35,4 +35,10 @@ class ComputerPlayer < Player
     ship_placed
   end
 
+  def turn
+    x = rand(1..10)
+    y= rand(1..10)
+    return [x, y]
+  end
+
 end

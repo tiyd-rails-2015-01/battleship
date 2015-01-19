@@ -3,6 +3,7 @@ class Game
     @human = human
     @computer = computer
     @ships = ships
+    @turn = 1
   end
 
   def welcome
@@ -12,5 +13,29 @@ class Game
   def place_ships
     @human.place_ships(@ships)
     @computer.place_ships(@ships)
+  end
+
+  def take_turn
+    if @turn.odd?
+      coordinates = @human.turn
+      if @computer.board.fire_at(coordinates[0], coordinates[1])
+        puts "Hit!"
+        @computer.board.hits
+      else
+        puts "Miss!"
+        @computer.board.misses
+      end
+
+    else
+      coordinates = @computer.turn
+      if @human.board.fire_at(coordinates[0], coordinates[1])
+        puts "Hit!"
+        @human.board.hits
+      else
+        puts "Miss!"
+        @human.board.misses
+      end
+    end
+    @turn += 1
   end
 end

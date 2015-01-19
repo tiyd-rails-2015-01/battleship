@@ -1,8 +1,9 @@
 class Board
-  attr_accessor :ships
+  attr_accessor :ships, :misses, :hits
   def initialize()
     @ships = []
     @hits = []
+    @misses = []
   end
 
   def has_ship_on?(x, y)
@@ -35,6 +36,7 @@ class Board
           @hits << [x, y]
           return true
         else
+          @misses << [x, y]
           return false
         end
       end
