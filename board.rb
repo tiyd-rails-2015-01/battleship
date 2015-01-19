@@ -4,7 +4,7 @@ class Board
 
   attr_reader :ships
 
-  def initialize( isTargetGrid = nil )
+  def initialize( isTargetGrid = false )
     @ships = [] #array of Ship objects
 
     #if isTargetGrid: 0 = no shot fired at this coord
@@ -56,6 +56,17 @@ class Board
     return true
   end
 
+  def mark_target_board(x,y,hitOrMiss) #hitOrMiss = 1 for miss, 2 for hit
+    if hitOrMiss == 1
+      @grid[y-1][x-1] = 1
+    elsif hitOrMiss == 2
+      @grid[y-1][x-1] = 2
+    else #this should never happen
+      @grid[y-1][x-1] = 3
+    end
+
+  end
+
   def fire_at(x,y)
     xIsInBounds = (x >= 0) && (x < 10)
     yIsInBounds = (y >= 0) && (y <=10)
@@ -69,6 +80,7 @@ class Board
     end
 
     return false
+
   end
 
   def display
@@ -112,9 +124,17 @@ class Board
         if @grid[y][x] == 0
           thisLine += "  "
         elsif @grid[y][x] == 1
-          thisLine += "O "
+          if @isTargetGrid
+            thisLine += "- "
+          else
+            thisLine += "O "
+          end
         elsif @grid[y][x] == 2
-          thisLine += "X "
+          if @isTargetGrid
+            thisLine += "+ "
+          else
+            thisLine += "X "
+          end
         end
       end
 

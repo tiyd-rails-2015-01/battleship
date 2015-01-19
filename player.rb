@@ -39,11 +39,13 @@ class Player
 end
 
 class HumanPlayer < Player
+
+  attr_reader :board
+
   def initialize( name = "Dave" )
     @name = name
     @board = Board.new
     @target_board = Board.new( true )
-    # @target_board = Board.new
   end
 
   def place_ships( shipSizes )
@@ -82,6 +84,8 @@ class HumanPlayer < Player
 end
 
 class ComputerPlayer < Player
+
+  attr_reader :board
 
   def initialize
     @name = "HAL 9000"

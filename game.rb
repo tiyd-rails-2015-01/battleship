@@ -1,9 +1,14 @@
+def get_user_input
+  gets.chomp
+end
+
 class Game
 
   def initialize( player1, player2, ship_sizes = [2,3,3,4,5])
     @player1 = player1
     @player2 = player2
     @ship_sizes = ship_sizes
+    @player1Goes = true
   end
 
   def welcome
@@ -16,7 +21,42 @@ class Game
   end
 
   def take_turn
-    puts "Miss!" #arbitrary
+
+    if @player1Goes || @player2.class != ComputerPlayer
+      coord = get_user_input
+    else
+      coord = "A1" #arbitrary value
+    end
+
+    if @player1Goes
+      @player1Goes = false
+      x = @player1.board.x_of( coord )
+      y = @player1.board.y_of( coord )
+      if @player1.board.fire_at( x, y )
+        puts "Hit!"
+        @player2.board.mark_target_board(x,y,2)
+        return
+      else
+        puts "Miss!"
+        @player2.board.mark_target_board(x,y,1)
+        return
+      end
+    else
+      @player1Goes = true
+      x = @player2.board.x_of( coord )
+      y = @player2.board.y_of( coord )
+      if @player2.board.fire_at( x, y )
+        puts "Hit!"
+        @player1.board.mark_target_board(x,y,2)
+        return
+      else
+        puts "Miss!"
+        @player1.board.mark_target_board(x,y,1)
+        return
+      end
+    end
+
+    puts "Miss!"
   end
 
   def play
