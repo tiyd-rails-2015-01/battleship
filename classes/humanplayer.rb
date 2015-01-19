@@ -23,8 +23,8 @@ class HumanPlayer < Player
       ship = Ship.new(length)
       puts "Across or Down?"
       across = get_user_input
-      is_it_across = across.include?("across")
-      board.place_ship(ship, x, y, is_it_across)
+      is_it_across = across.downcase.include?("across")
+      @board.place_ship(ship, x, y, is_it_across)
     end
   end
 
