@@ -30,6 +30,10 @@ class Ship
     @coord.include? [x, y]
   end
 
+  def locations
+    @coord
+  end
+
   def overlaps_with?(ship)
     overlap = false
     @coord.each do |co|
