@@ -2,9 +2,12 @@ require "./board.rb"
 require "./ship.rb"
 
 class ComputerPlayer < Player
+  attr_reader :target_board
+  
   def initialize
     super
     @board = Board.new
+    @target_board = Board.new
     @name = "HAL 9000"
   end
 

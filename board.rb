@@ -1,8 +1,12 @@
 class Board
   attr_accessor :ships
+  attr_accessor :misses
+  attr_accessor :hits
+
   def initialize
     @ships = []
     @hits = []
+    @misses = []
   end
 
 
@@ -32,8 +36,6 @@ class Board
     end
     return has_ship_on
   end
-
-
 
   def fire_at(x, y)
       if @ships.empty? || @hits.include?([x, y])

@@ -7,10 +7,12 @@ end
 
 class HumanPlayer < Player
   attr_accessor :name
+  attr_reader :target_board
 
   def initialize(name = "Dave")
     @name = name
     @board = Board.new
+    @target_board = Board.new
     @ships = []
   end
 
