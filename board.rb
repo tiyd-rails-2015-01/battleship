@@ -20,6 +20,7 @@ class Board
       return true
     else
       ship.placed = false
+      ship.locations = []
       return false
     end
   end

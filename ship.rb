@@ -9,9 +9,6 @@ class Ship
     @ship_hits = 0
   end
 
-  def gets_hit
-    #@locations << hit location? maybe stored as a hash
-  end
   def place(column, row, across)
     if @placed == false
       @placed = true
