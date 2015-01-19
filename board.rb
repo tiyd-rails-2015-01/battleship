@@ -89,6 +89,18 @@ class Board
     self.game_board_footer
   end
 
+  def sunk?
+    if @shotstaken.empty?
+      return false
+    end
+    if @shotstaken.sort == @cells_with_ships
+      return true
+    else
+      return false
+    end
+  end
+
+
 end
 
 # board = Board.new
