@@ -1,5 +1,6 @@
 class Board
   attr_accessor :ships
+  attr_reader  :hits, :misses
   def initialize
     @ships=[]
     @hits= []
@@ -35,24 +36,25 @@ class Board
   end
 
   def fire_at(x, y)
+    temp_hits = [x, y]
     hit= false
     if @ships.empty?
-      false
+      hit = false
     else
       @ships.each do |ship|
-      if ship.covers?(x,y)
-        hit = true
-        temp_hits = [x, y]
-          if @hits.include?(temp_hits)
-            return false
+        if ship.covers?(x,y)
+          hit = true
+            if @hits.include?(temp_hits)
+              return hit = false
+            else
+              @hits << temp_hits
+            end
           else
-            @hits << temp_hits
+            @misses << temp_hits if !@misses.include?(temp_hits)
+            return hit = false
           end
-        else
-          @misses << [x, y]
-      end
-      return hit
-    end
+        end
+        return hit
     end
   end
 
@@ -88,26 +90,7 @@ class Board
     puts "  -----------------------------------------"
   end
 
-  def display_hits
-    letters = ["A","B","C","D","E","F","G","H","I","J"]
-    self.display_header
-    (1..10).each do |y|
-      output_row = "#{letters[y-1]} |"
-      (1..10).each do |x|
-        if @hits.include?([x,y])
-          output_row += " + |"
-        elsif @misses.include?([x,y])
-          output_row += " - |"
-        else
-          output_row += "   |"
-        end
-      end
-      puts output_row
-    end
 
-    self.display_bottom
-
-  end
 
 
   def sunk?

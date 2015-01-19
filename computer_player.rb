@@ -10,8 +10,10 @@ class ComputerPlayer <Player
     return true
   end
 
-  def hit_board
-    hits_board.display_hits
+  def turn
+    x = rand(1..10)
+    y= rand(1..10)
+    return [x, y]
   end
 
 

@@ -2,52 +2,58 @@ def get_user_input
   gets.chomp
 end
 class Game
-  def initialize(human, computer, default_lengths=[2, 3, 3, 4, 5])
-    @human=human
-    @computer=computer
+  def initialize(player1,player2, default_lengths=[2, 3, 3, 4, 5])
+    @player1=player1
+    @player2=player2
     @default_lengths=default_lengths
     @turn= 1
-    @play
   end
-  
+
   def play
-    @play
+    self.welcome
+    self.place_ships
+    unless @player1.board.sunk? || @player2.board.sunk?
+      self.take_turn
+    end
+    if @player1.board.sunk?
+      puts "Sorry! You lost :("
+    else @player2.board.sunk?
+      puts "Congratulations, #{@player1.name}! You won!"
+    end
   end
+
   def welcome
-    puts "Welcome, #{@human.name} and #{@computer.name}!\nIt's time to play Battleship.\n"
+    puts "Welcome, #{@player1.name} and #{@player2.name}!\nIt's time to play Battleship.\n"
   end
 
   def place_ships
-    @human.place_ships(@default_lengths)
-    @computer.place_ships(@default_lengths)
+    @player1.place_ships(@default_lengths)
+    @player2.place_ships(@default_lengths)
   end
 
   def take_turn
     if @turn.odd?
-      puts "Where do you want to fire at?"
-      coordinates = get_user_input
-      x = @computer.board.x_of(coordinates)
-      y= @computer.board.y_of(coordinates)
-      if @computer.board.fire_at(x, y)
+      coordinates = @player1.turn
+      if @player2.board.fire_at(coordinates[0], coordinates[1])
         puts "Hit!"
+        @player1.shots_hit = @player2.board.hits
       else
         puts "Miss!"
+        @player1.shots_missed = @player2.board.misses
       end
 
     else
-      x = rand(1..10)
-      y= rand(1..10)
-      if @human.board.fire_at(x, y)
+      coordinates= @player2.turn
+      if @player1.board.fire_at(coordinates[0], coordinates[1])
         puts "Hit!"
+        @player2.shots_hit = @player1.board.hits
       else
         puts "Miss!"
+        @player2.shots_missed = @player1.board.misses
       end
     end
     @turn += 1
   end
 
-  def game_status
-    computer.display_hits
-  end
 
 end
