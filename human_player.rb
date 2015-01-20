@@ -43,4 +43,8 @@ class HumanPlayer < Player
   def ships
     return @board.fleet
   end
+  def display_game_status
+    @board.display_target
+    @board.display
+  end
 end

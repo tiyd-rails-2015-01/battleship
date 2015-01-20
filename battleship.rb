@@ -8,7 +8,7 @@ require './game.rb'
 # @human = HumanPlayer.new("Frank")
 # @computer = ComputerPlayer.new
 # @game = Game.new(@human, @computer)
-# @game.place_ships
+# # @game.place_ships
 # # # # $mock_inputs.clear
 # # # # $mock_inputs << "A1"
 # # # # $mock_inputs << "Down"
@@ -23,25 +23,55 @@ require './game.rb'
 # # #
 # # #
 # @game.take_turn
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# human = HumanPlayer.new("Alice")
-# computer = ComputerPlayer.new
-# game = Game.new(human, computer, [2, 3])
+# @human.display_game_status
+#
+# puts "potato sandwich"
+# puts %Q{    1   2   3   4   5   6   7   8   9   10
+#   -----------------------------------------
+#   A |   |   |   |   |   |   |   |   |   |   |
+#   B |   |   |   |   |   |   |   |   |   |   |
+#   C |   |   |   |   |   |   |   |   |   |   |
+#   D |   |   |   |   |   |   |   |   |   |   |
+#   E |   |   |   |   |   |   |   |   |   |   |
+#   F |   |   |   |   |   |   |   |   |   |   |
+#   G |   |   |   |   |   |   |   |   |   |   |
+#   H |   |   |   |   |   |   |   |   |   |   |
+#   I |   |   |   |   |   |   |   |   |   |   |
+#   J |   |   |   |   |   |   |   |   |   |   |
+#   -----------------------------------------
+#
+#   1   2   3   4   5   6   7   8   9   10
+#   -----------------------------------------
+#   A | O |   | O |   | O |   | O |   | O |   |
+#   B | O |   | O |   | O |   | O |   | O |   |
+#   C |   |   | O |   | O |   | O |   | O |   |
+#   D |   |   |   |   |   |   | O |   | O |   |
+#   E |   |   |   |   |   |   |   |   | O |   |
+#   F |   |   |   |   |   |   |   |   |   |   |
+#   G |   |   |   |   |   |   |   |   |   |   |
+#   H |   |   |   |   |   |   |   |   |   |   |
+#   I |   |   |   |   |   |   |   |   |   |   |
+#   J |   |   |   |   |   |   |   |   |   |   |
+#   -----------------------------------------
+# }
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# # human = HumanPlayer.new("Alice")
+# # computer = ComputerPlayer.new
+# # game = Game.new(human, computer, [2, 3])
 #
 # # $mock_inputs << "A2"
 # # $mock_inputs << "Down"

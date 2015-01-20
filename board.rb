@@ -105,4 +105,28 @@ class Board
     end
     puts"  -----------------------------------------"
   end
+  def display_target
+    puts"    1   2   3   4   5   6   7   8   9   10"
+    puts"  -----------------------------------------"
+    row = (1..10).to_a
+    red_xes = locations_of_hits
+    letters = ("A |".."J |").to_a
+    row.each do |num|
+      boxes = [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "]
+      @coordinates.each do |coord|
+        if coord[1] == num
+          boxes[coord[0]-1] = " "
+        end
+      end
+      red_xes.each do |c|
+        if c[1] == num
+          boxes[c[0]-1] = " "
+        end
+      end
+      puts "#{letters[num-1]} #{boxes[0]} | #{boxes[1]} | #{boxes[2]} | #{boxes[3]} |" +
+      " #{boxes[4]} | #{boxes[5]} | #{boxes[6]} | #{boxes[7]} | #{boxes[8]} | #{boxes[9]} |"
+    end
+    puts"  -----------------------------------------"
+    puts ""
+  end
 end
