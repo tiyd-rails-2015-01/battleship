@@ -241,83 +241,83 @@ J |   |   |   |   |   |   |   |   |   |   |
 
 
 
-# def test_21_player_classes_exist
-#   assert Player
-#   assert HumanPlayer
-#   assert ComputerPlayer
-# end
+def test_21_player_classes_exist
+  assert Player
+  assert HumanPlayer
+  assert ComputerPlayer
+end
 
-#   def test_22_players_have_inheritance
-#     assert_equal Player, HumanPlayer.superclass
-#     assert_equal Player, ComputerPlayer.superclass
-#   end
-#
-#   def test_23_humans_can_be_named
-#     assert_equal "Alice", HumanPlayer.new("Alice").name
-#   end
-#
-#   def test_24_computers_cannot_be_named
-#     assert_raises(ArgumentError) do
-#       ComputerPlayer.new("The Red Queen")
-#     end
-#   end
-#
-#   def test_25_players_have_default_names
-#     assert_equal "Dave", HumanPlayer.new.name
-#     assert_equal "HAL 9000", ComputerPlayer.new.name
-#   end
-#
-#   def test_26_players_have_boards
-#     assert_equal Board, HumanPlayer.new.board.class
-#     assert_equal Board, ComputerPlayer.new.board.class
-#   end
-#
-#   def test_27_computer_player_automatically_places_ships
-#     player = ComputerPlayer.new
-#     assert_output("HAL 9000 has placed his ships.\n") do
-#       assert player.place_ships([2, 3, 3, 4, 5])
-#     end
-#     assert_equal 5, player.ships.length
-#     assert_equal 4, player.ships[3].length
-#   end
-#
-#
-#   def test_28_x_of
-#     board = Board.new
-#     assert_equal 1, board.x_of("A1")
-#     assert_equal 1, board.x_of("G1")
-#     assert_equal 6, board.x_of("D6")
-#     assert_equal 10, board.x_of("D10")
-#   end
-#
-#   def test_29_y_of
-#     board = Board.new
-#     assert_equal 1, board.y_of("A1")
-#     assert_equal 7, board.y_of("G1")
-#     assert_equal 4, board.y_of("D6")
-#     assert_equal 4, board.y_of("D10")
-#   end
-#
-#   def test_30_human_player_is_asked_to_place_ships
-#     player = HumanPlayer.new
-#     $mock_inputs.clear
-#     $mock_inputs << "A1"
-#     $mock_inputs << "Down"
-#     $mock_inputs << "A4"
-#     $mock_inputs << "Down"
-#     assert_output("Dave, where would you like to place a ship of length 2?\nAcross or Down?\n"+
-#                   "Dave, where would you like to place a ship of length 5?\nAcross or Down?\n") do
-#       assert player.place_ships([2, 5])
-#     end
-#     assert_equal 2, player.ships.length
-#     assert_equal 5, player.ships[1].length
-#     assert player.board.has_ship_on?(1, 1)
-#     assert player.board.has_ship_on?(4, 1)
-#     assert player.board.has_ship_on?(1, 2)
-#     refute player.board.has_ship_on?(1, 3)
-#   end
-#
-#
+  def test_22_players_have_inheritance
+    assert_equal Player, HumanPlayer.superclass
+    assert_equal Player, ComputerPlayer.superclass
+  end
+
+  def test_23_humans_can_be_named
+    assert_equal "Alice", HumanPlayer.new("Alice").name
+  end
+
+  def test_24_computers_cannot_be_named
+    assert_raises(ArgumentError) do
+      ComputerPlayer.new("The Red Queen")
+    end
+  end
+
+  def test_25_players_have_default_names
+    assert_equal "Dave", HumanPlayer.new.name
+    assert_equal "HAL 9000", ComputerPlayer.new.name
+  end
+
+  def test_26_players_have_boards
+    assert_equal Board, HumanPlayer.new.board.class
+    assert_equal Board, ComputerPlayer.new.board.class
+  end
+
+  def test_27_computer_player_automatically_places_ships
+    player = ComputerPlayer.new
+    assert_output("HAL 9000 has placed his ships.\n") do
+      assert player.place_ships([2, 3, 3, 4, 5])
+    end
+    assert_equal 5, player.ships.length
+    assert_equal 4, player.ships[3].length
+  end
+
+
+  def test_28_x_of
+    board = Board.new
+    assert_equal 1, board.x_of("A1")
+    assert_equal 1, board.x_of("G1")
+    assert_equal 6, board.x_of("D6")
+    assert_equal 10, board.x_of("D10")
+  end
+
+  def test_29_y_of
+    board = Board.new
+    assert_equal 1, board.y_of("A1")
+    assert_equal 7, board.y_of("G1")
+    assert_equal 4, board.y_of("D6")
+    assert_equal 4, board.y_of("D10")
+  end
+
+  def test_30_human_player_is_asked_to_place_ships
+    player = HumanPlayer.new
+    $mock_inputs.clear
+    $mock_inputs << "A1"
+    $mock_inputs << "Down"
+    $mock_inputs << "A4"
+    $mock_inputs << "Down"
+    assert_output("Dave, where would you like to place a ship of length 2?\nAcross or Down?\n"+
+                  "Dave, where would you like to place a ship of length 5?\nAcross or Down?\n") do
+      assert player.place_ships([2, 5])
+    end
+    assert_equal 2, player.ships.length
+    assert_equal 5, player.ships[1].length
+    assert player.board.has_ship_on?(1, 1)
+    assert player.board.has_ship_on?(4, 1)
+    assert player.board.has_ship_on?(1, 2)
+    refute player.board.has_ship_on?(1, 3)
+  end
+
+
 #
 #   def test_31_game_class_exists
 #     assert Game

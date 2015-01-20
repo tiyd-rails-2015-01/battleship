@@ -1,2 +1,3 @@
-require './ship'
-require './board'
+require './ship.rb'
+require './board.rb'
+require './player.rb'

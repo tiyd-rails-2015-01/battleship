@@ -1,6 +1,9 @@
 require './ship'
 
 class Board
+
+  attr_accessor :fleet
+
   def initialize
     @fleet = []
     @placed = []
@@ -77,14 +80,25 @@ class Board
   end
 
   def sunk?
-    if @shots_taken.empty?
+    if @fleet.empty?
       return false
     end
-    if @shots_taken.sort == @cells_with_ships
-      return true
-    else
-      return false
+    @fleet.each do |ship|
+      if ship.sunk? == false
+        return false
+      else
+        return true
+      end
     end
+    
+  #   if @shots_taken.empty?
+  #     return false
+  #   end
+  #   if @shots_taken.sort == @cells_with_ships
+  #     return true
+  #   else
+  #     return false
+  #   end
   end
 
 end
