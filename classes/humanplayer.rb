@@ -3,7 +3,6 @@ def get_user_input
 end
 
 class HumanPlayer < Player
-  attr_accessor :name
 
   def initialize(input = "Dave")
     @board = Board.new
@@ -40,7 +39,7 @@ class HumanPlayer < Player
   end
 
   def turn
-    puts "Where would you like to fire #{@name}"
+    puts "Where would you like to fire #{@name}?"
     coordinates = get_user_input
     x = self.board.x_of(coordinates)
     y = self.board.y_of(coordinates)

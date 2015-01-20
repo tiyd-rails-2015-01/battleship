@@ -1,6 +1,7 @@
 class Board
-  attr_accessor :ships, :misses, :hits, :is_target_board
-  def initialize()
+  attr_accessor :ships, :is_target_board
+  attr_reader :hits, :misses
+  def initialize
     @ships = []
     @hits = []
     @misses = []

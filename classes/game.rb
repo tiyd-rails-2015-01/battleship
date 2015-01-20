@@ -1,39 +1,43 @@
 class Game
-  def initialize(human, computer, ships = [2, 3, 3, 4, 5])
-    @human = human
-    @computer = computer
-    @ships = ships
+  def initialize(player1, player2 = ComputerPlayer.new, ship_lengths = [2, 3, 3, 4, 5])
+    @player1 = player1
+    @player2 = player2
+    @ship_lengths = ship_lengths
     @turn = 1
   end
 
   def welcome
-    puts "Welcome, #{@human.name} and HAL 9000!\nIt's time to play Battleship.\n"
+    if @player2 = ComputerPlayer.new
+      puts "Welcome, #{@player1.name} and HAL 9000!\nIt's time to play Battleship.\n"
+    else
+      puts "Welcome, #{@player1.name} and #{@player2}!\nIt's time to play Battleship.\n"
+    end
   end
 
   def place_ships
-    @human.place_ships(@ships)
-    @computer.place_ships(@ships)
+    @player1.place_ships(@ship_lengths)
+    @player2.place_ships(@ship_lengths)
   end
 
   def take_turn
     if @turn.odd?
-      coordinates = @human.turn
-      if @computer.board.fire_at(coordinates[0], coordinates[1])
+      coordinates = @player1.turn
+      if @player2.board.fire_at(coordinates[0], coordinates[1])
         puts "Hit!"
-        @computer.board.hits
+        @player1.shots_hit = @player2.board.hits
       else
         puts "Miss!"
-        @computer.board.misses
+        @player1.shots_missed = @player2.board.misses
       end
 
     else
-      coordinates = @computer.turn
-      if @human.board.fire_at(coordinates[0], coordinates[1])
+      coordinates= @player2.turn
+      if @player1.board.fire_at(coordinates[0], coordinates[1])
         puts "Hit!"
-        @human.board.hits
+        @player2.shots_hit = @player1.board.hits
       else
         puts "Miss!"
-        @human.board.misses
+        @player2.shots_missed = @player1.board.misses
       end
     end
     @turn += 1
