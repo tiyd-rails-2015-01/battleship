@@ -6,7 +6,7 @@ def get_user_input
 end
 
 class Board
-  attr_reader :misses, :hits
+  attr_reader :misses, :hits, :ships
   def initialize
     @ships = []
     @hits = []
@@ -109,6 +109,9 @@ class Board
       ship_length += i.length
     end
     return ship_length
+
+    #@ships.reduce {|sum, ship| sum += ship.length}
+
   end
   def x_of(coords)
     coords.slice(1..coords.length).to_i
