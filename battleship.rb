@@ -16,3 +16,11 @@ require './classes/game.rb'
 # # puts player.board.has_ship_on?(4, 1)
 # board = Board.new()
 # board.place_ship(Ship.new(5), 2, 3, false)
+
+#Debugging test 40
+
+# human1 = HumanPlayer.new("Amy")
+# human2 = HumanPlayer.new("Beth")
+# game = Game.new(human1, human2, [2])
+# @hits = [[3, 5], [4, 7]]
+# human1.display_game_status

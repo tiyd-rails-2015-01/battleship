@@ -1,9 +1,10 @@
 class Board
-  attr_accessor :ships, :misses, :hits
+  attr_accessor :ships, :misses, :hits, :is_target_board
   def initialize()
     @ships = []
     @hits = []
     @misses = []
+    is_target_board = false
   end
 
   def has_ship_on?(x, y)
@@ -58,13 +59,25 @@ class Board
     self.display_header
     (1..10).each do |r|
       output = "#{letters[r - 1]} |"
-      (1..10).each do |c|
-        if @hits.include?([c, r])
-          output << " X |"
-        elsif self.has_ship_on?(c, r)
-          output << " O |"
-        else
-          output << "   |"
+      if @is_target_board == true
+        (1..10).each do |c|
+          if @hits.include?([c, r])
+            output << " + |"
+          elsif @misses.include?([c, r])
+            output << " - |"
+          else
+            output << "   |"
+          end
+        end
+      else
+        (1..10).each do |c|
+          if @hits.include?([c, r])
+            output << " X |"
+          elsif self.has_ship_on?(c, r)
+            output << " O |"
+          else
+            output << "   |"
+          end
         end
       end
       puts output

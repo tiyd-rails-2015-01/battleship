@@ -9,6 +9,7 @@ class HumanPlayer < Player
     @board = Board.new
     @name = input
     @target_board = Board.new
+    @target_board.is_target_board = true
   end
 
   def ships
