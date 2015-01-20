@@ -7,6 +7,7 @@ class ComputerPlayer < Player
     super
     @computer_name = "HAL 9000"
     @computer_fleet = []
+
   end
 
   def name
