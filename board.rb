@@ -85,6 +85,14 @@ class Board
     self.display_footer
   end
 
+  def sunk?
+   if @fleet.empty?
+     return false
 
+
+
+   end
+
+  end
 
 end # class end
