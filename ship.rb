@@ -52,7 +52,7 @@ class Ship
     end
   end
 
-  def sunk?()
+  def sunk?
     @coordinates == @hit
   end
 
