@@ -33,9 +33,14 @@ class Game
       end
     else
       @turn_counter += 1
-      x = rand(10)
-      y = rand(10)
-      @computer.board.fire_at(x, y)
+      x = 1#rand(10)
+      y = 1#rand(10)
+      computer_shot = @computer.board.fire_at(x, y)
+      if shot == true
+        puts "Hit!"
+      else
+        puts "Miss!"
+      end
     end
   end
 end
