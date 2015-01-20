@@ -10,6 +10,16 @@ class HumanPlayer < Player
     @name = name
     @ships = []
     @board = Board.new
+    @shots_missed = []
+    @shots_hit = []
+  end
+
+  def shots_missed
+    @shots_mised
+  end
+
+  def shots_hit
+    @shots_hit
   end
 
   def name

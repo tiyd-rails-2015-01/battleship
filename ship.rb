@@ -47,6 +47,7 @@ class Ship
     if (@coordinates & other_ship.coordinates).empty?
       return false
     else
+      puts "Unfortunately, that ship overlaps with one of your other ships.  Please try again."
       return true
     end
   end

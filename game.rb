@@ -1,6 +1,6 @@
 class Game
 
-  def initialize(human = HumanPlayer.new, computer = ComputerPlayer.new, default_ships = [2, 3, 3, 4, 5])
+  def initialize(human, computer, default_ships = [2, 3, 3, 4, 5])
     @human = human
     @computer = computer
     @default_ships = default_ships
@@ -15,6 +15,10 @@ class Game
     @human.place_ships(@default_ships)
     @computer.place_ships(@default_ships)
   end
+
+  def take_turn
+  end
+
 
 
 

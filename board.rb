@@ -8,7 +8,11 @@ class Board
     @ships = []
     @place
     @hits = []
+    @misses = []
+  end
 
+  def misses
+    @misses
   end
 
   def has_ship_on?(x, y)
