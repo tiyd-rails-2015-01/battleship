@@ -24,6 +24,11 @@ class Game
   def take_turn
 
     if @player1Goes || @player2.class != ComputerPlayer
+      if @player1Goes
+        puts "#{@player1.name}, what is your next guess?"
+      else
+        puts "#{@player2.name}, what is your next guess?"
+      end
       coord = get_user_input
     else
       coord = "A1" #arbitrary value
@@ -76,7 +81,7 @@ class Game
 
   def play
     place_ships
-    
+
     until @game_over
       take_turn
     end

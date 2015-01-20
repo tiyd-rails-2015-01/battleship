@@ -98,17 +98,17 @@ class Board
         if @grid[y][x] == 0
           thisLine += "  "
         elsif @grid[y][x] == 1
-          if @isTargetGrid
-            thisLine += "- "
-          else
+          # if @isTargetGrid
+            # thisLine += "- "
+          # else
             thisLine += "O "
-          end
+          # end
         elsif @grid[y][x] == 2
-          if @isTargetGrid
-            thisLine += "+ "
-          else
+          # if @isTargetGrid
+            # thisLine += "+ "
+          # else
             thisLine += "X "
-          end
+          # end
         elsif @grid[y][x] == "+"
           thisLine += "+ "
         elsif @grid[y][x] == "-"
@@ -140,26 +140,15 @@ class Board
   end
 
   def x_of( string )
-    if string.upcase.include?("1") && !string.include?("10")
-      return 1
-    elsif string.upcase.include?("2")
-      return 2
-    elsif string.upcase.include?("3")
-      return 3
-    elsif string.upcase.include?("4")
-      return 4
-    elsif string.upcase.include?("5")
-      return 5
-    elsif string.upcase.include?("6")
-      return 6
-    elsif string.upcase.include?("7")
-      return 7
-    elsif string.upcase.include?("8")
-      return 8
-    elsif string.upcase.include?("9")
-      return 9
-    elsif string.upcase.include?("10")
+
+    if string.upcase.include?("10")
       return 10
+    end
+
+    ("1".."9").each do |i|
+      if string.upcase.include?(i)
+        return i.to_i
+      end
     end
 
     #should never happen!
@@ -189,6 +178,12 @@ class Board
     elsif string.upcase.include?("J")
       return 10
     end
+    # cleaner code... make it work later 
+    # ("A".."J").each do |c|
+    #   if string.upcase.include?(c)
+    #     return ("A".."J").to_a.index(c)
+    #   end
+    # end
 
     #should never happen!
     return nil
