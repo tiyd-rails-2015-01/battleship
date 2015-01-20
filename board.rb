@@ -52,17 +52,16 @@ class Board
    (1..10).each do |row|
      resulting_row = "#{y_axis[row-1]} |"
      (1..10).each do |col|
-       if has_ship_on?(col, row)
-         resulting_row << " O |"
-       else
-          resulting_row << "   |"
         if @hit.include?([col, row])
           resulting_row << " X |"
+        elsif has_ship_on?(col, row)
+          resulting_row << " O |"
+        else
+          resulting_row << "   |"
         end
-       end
-     end
-   puts resulting_row
-  end
+      end
+      puts resulting_row
+    end
   display_footer
  end
 
