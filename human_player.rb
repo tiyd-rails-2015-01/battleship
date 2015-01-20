@@ -18,20 +18,27 @@ class HumanPlayer < Player
   end
   def place_ships(array_of_ship_lengths)
     array_of_ship_lengths.each do |length|
-      ship = Ship.new(length)
-      puts "#{@name}, where would you like to place a ship of length #{length}?"
-      coord = get_user_input
-      x = @board.x_of(coord)
-      y = @board.y_of(coord)
-      puts "Across or Down?"
-      direction = get_user_input
-      a = true
-      if direction == "Across"
+
+      ship_has_been_placed = false
+      while ship_has_been_placed == false
+        ship = Ship.new(length)
+        puts "#{@name}, where would you like to place a ship of length #{length}?"
+        coord = get_user_input
+        x = @board.x_of(coord)
+        y = @board.y_of(coord)
+        puts "Across or Down?"
+        direction = get_user_input
         a = true
-      else
-        a = false
+        if direction == "Across"
+          a = true
+        else
+          a = false
+        end
+        ship_has_been_placed = @board.place_ship(ship, x, y, a)
+        if ship_has_been_placed == false
+          puts "Unfortunately, that ship overlaps with one of your other ships.  Please try again."
+        end
       end
-      @board.place_ship(ship, x, y, a)
     end
   end
   def ships

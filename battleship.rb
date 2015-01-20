@@ -6,6 +6,23 @@ require './human_player.rb'
 require './game.rb'
 
 
+# human = HumanPlayer.new("Alice")
+# computer = ComputerPlayer.new
+# game = Game.new(human, computer, [2, 3])
+#
+# # $mock_inputs << "A2"
+# # $mock_inputs << "Down"
+# # $mock_inputs << "A1"
+# # $mock_inputs << "Across"
+# # $mock_inputs << "F1"
+# # $mock_inputs << "Across"
+# # assert_output("Alice, where would you like to place a ship of length 2?\nAcross or Down?\n"+
+# # "Alice, where would you like to place a ship of length 3?\nAcross or Down?\n"+
+# # "Unfortunately, that ship overlaps with one of your other ships.  Please try again.\n"+
+# # "Alice, where would you like to place a ship of length 3?\nAcross or Down?\n"+
+# # "HAL 9000 has placed his ships.\n") do
+# game.place_ships
+
 
 
 # class Ship
