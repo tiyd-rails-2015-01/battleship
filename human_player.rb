@@ -18,7 +18,6 @@ class HumanPlayer < Player
   end
   def place_ships(array_of_ship_lengths)
     array_of_ship_lengths.each do |length|
-
       ship_has_been_placed = false
       while ship_has_been_placed == false
         ship = Ship.new(length)
