@@ -16,7 +16,8 @@ class Game
   def play
     self.welcome
     self.place_ships
-    unless @human.board.sunk? || @computer.board.sunk?
+    until @human.board.sunk? || @computer.board.sunk?
+
       self.take_turn
     end
     if @human.board.sunk?
@@ -36,20 +37,23 @@ class Game
     if @turn_counter.even?
       coords = @human.turn
       if @computer.board.fire_at(coords[0], coords[1])
-        puts "That's a Hit!"
+        puts "#{@human.name}, That's a Hit!"
         @human.shots_hit = @computer.board.hits
       else
-        puts "That's a Miss!"
+        puts "#{@human.name}, That's a Miss!"
         @human.shots_missed = @computer.board.misses
       end
+      @human.display_hits
+      @human.board.display
+      #@computer.board.display < Checking to see if computer ships were being placed and could be hit.
 
     else
       coords = @computer.turn
       if @human.board.fire_at(coords[0], coords[1])
-        puts "That's a Hit!"
+        puts "#{@computer.name}, That's a Hit!" #unless @computer.class == ComputerPlayer < breaks test, looks good
         @computer.shots_hit = @human.board.hits
       else
-        puts "That's a Miss!"
+        puts "#{@computer.name}, That's a Miss!" #unless @computer.class == ComputerPlayer < breaks test looks good
         @computer.shots_missed = @human.board.misses
       end
     end
@@ -57,10 +61,3 @@ class Game
   end
 
 end
-
-#if @ships.empty?
-#  @ships.each do |s|
-#    puts "#{@human.name}, where would you like to place a ship of length #{@s.length}?"
-#    coords = get_user_input
-#  end
-#end

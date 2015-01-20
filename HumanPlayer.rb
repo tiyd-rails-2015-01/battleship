@@ -6,12 +6,6 @@ def get_user_input
 end
 
 class HumanPlayer < Player
-  # attr_accessor :board, :name
-  # def initialize(name = "Dave")
-  #   @board = Board.new
-  #   @name = name
-  #   @ships = []
-  # end
 
   def initialize(name = "Dave")
     super(name)
@@ -45,7 +39,6 @@ class HumanPlayer < Player
     (1..10).each do |r|
       output_row = "#{letters[r-1]} |"
       (1..10).each do |c|
-        #puts "#{@hits}"
         if @shots_hit.include?([c,r])
           output_row += " + |"
         elsif @shots_missed.include?([c,r])

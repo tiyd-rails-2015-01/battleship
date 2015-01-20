@@ -41,30 +41,26 @@ class Board
     return has_ship_on
   end
 
-  def fire_at (column, row) #change to track misses
+  def fire_at (column, row)
     temp_hits = [column, row]
     hit = false
     #miss = true
     if @ships.empty?
       false
     else
-      @ships.each do |ship|
-        if ship.covers?(column, row)
-          hit = true
-            if @hits.include?(temp_hits)
-              return false
-            else
-              @hits << temp_hits
-            end
-        else
-          @misses << temp_hits if !@misses.include?(temp_hits)
-          return false
-        end
-        #puts "hits array is#{@hits}~~~~~"
-
-        return hit
+      if self.has_ship_on?(column, row)
+        hit = true
+          if @hits.include?(temp_hits)
+            return false
+          else
+            @hits << temp_hits
+          end
+      else
+        @misses << temp_hits if !@misses.include?(temp_hits)
+        return false
       end
     end
+    return hit
   end
 
 
