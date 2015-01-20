@@ -3,15 +3,12 @@ def get_user_input
 end
 
 class Game
-  def initialize(human, computer, default_ships = [2,3,3,4,5])
+  def initialize(human, computer = ComputerPlayer.new, default_ships = [2,3,3,4,5])
     @human = human
     @computer = computer
     @default_ships = default_ships
     @turn_counter = 0
   end
-
-  #not sure why the game requires players test isnt passing. @human and @computer are required to initialize the game
-
 
   def welcome
     puts "Welcome, #{@human.name} and #{@computer.name}!\nIt's time to play Battleship.\n"
@@ -24,7 +21,7 @@ class Game
       self.take_turn
     end
     if @human.board.sunk?
-      puts "MWAHAHAHA"
+      puts "Bow down to the power of the mac"
     else
       puts "Congratulations, #{@human.name}! you beat #{@computer.name}!"+"You are not the worst in the world!"
     end

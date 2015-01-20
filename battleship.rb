@@ -6,4 +6,4 @@ require './computerplayer'
 require './game'
 
 
-#Game.new.play(HumanPlayer.new, ComputerPlayer.new)
+#Game.new.play

@@ -17,7 +17,7 @@ class HumanPlayer < Player
       until ship.placed
         puts "#{@name}, where would you like to place a ship of length #{ship.length}?"
         coords = get_user_input
-        x = @board.x_of(coords)
+        x = @board.x_of(coords) #column/row
         y = @board.y_of(coords)
         puts "Across or Down?"
         a_or_d = get_user_input
@@ -36,13 +36,13 @@ class HumanPlayer < Player
   def display_hits
     letters = ["A","B","C","D","E","F","G","H","I","J"]
     self.board.display_header
-    (1..10).each do |y|
-      output_row = "#{letters[y-1]} |"
-      (1..10).each do |x|
+    (1..10).each do |r|
+      output_row = "#{letters[r-1]} |"
+      (1..10).each do |c|
         #puts "#{@hits}"
-        if @shots_hit.include?([x, y])
+        if @shots_hit.include?([c, r])
           output_row += " + |"
-        elsif @shots_missed.include?([x, y])
+        elsif @shots_missed.include?([c, r])
           output_row += " - |"
         else
           output_row += "   |"

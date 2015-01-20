@@ -21,14 +21,16 @@ class Board
       @ships << ship
       return true
     else
+      ship.placed = false
+      ship.covered_coordinates = []   #issue here
       return false
     end
   end
 
   def has_ship_on?(x, y)
     has_ship_on = false
-    @ships.each do |ships|
-      if ships.covers?(x, y)
+    @ships.each do |s|
+      if s.covers?(x, y)
         has_ship_on = true
       end
     end

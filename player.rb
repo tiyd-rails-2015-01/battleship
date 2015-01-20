@@ -11,8 +11,8 @@ class Player
 
   def create_ships(ship_lengths)
     if @ships.empty?
-      ship_lengths.each do |length|
-        @ships << Ship.new(length)
+      ship_lengths.each do |l|
+        @ships << Ship.new(l)
       end
     end
   end
