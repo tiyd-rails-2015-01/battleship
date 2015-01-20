@@ -70,10 +70,4 @@ class Game
     end
   end
 
-  def starting_game_status
-
-  end
-
-
-
 end

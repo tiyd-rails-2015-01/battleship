@@ -46,4 +46,10 @@ class HumanPlayer < Player
     end
   end
 
+  def display_game_status
+    @target_board.display
+    puts ""
+    @board.display
+  end
+
 end
