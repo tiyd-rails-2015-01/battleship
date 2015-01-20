@@ -18,24 +18,24 @@ class Game
     @computer.place_ships(@ships)
   end
   def take_turn
-    while @won = false
-      if @turn_counter.even?
-        puts "Take a shot!"
-        coords = get_user_input
+    if @turn_counter.even?
+      @turn_counter += 1
+      puts "Take a shot!"
+      coords = get_user_input
 
-        x = @human.board.x_of(coords)
-        y = @human.board.y_of(coords)
-        @human.board.fire_at(x, y)
-        if true
-          puts "Hit!"
-        else
-          puts "Miss!"
-        end
-        @turn_counter += 1
+      x = @human.board.x_of(coords)
+      y = @human.board.y_of(coords)
+      shot = @human.board.fire_at(x, y)
+      if shot == true
+        puts "Hit!"
       else
-        @computer.fire
-        @turn_counter += 1
+        puts "Miss!"
       end
+    else
+      @turn_counter += 1
+      x = rand(10)
+      y = rand(10)
+      @computer.board.fire_at(x, y)
     end
   end
 end

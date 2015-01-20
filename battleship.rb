@@ -5,6 +5,39 @@ require './computer_player.rb'
 require './human_player.rb'
 require './game.rb'
 
+# @human = HumanPlayer.new("Frank")
+# @computer = ComputerPlayer.new
+# @game = Game.new(@human, @computer)
+# @game.place_ships
+# # # # $mock_inputs.clear
+# # # # $mock_inputs << "A1"
+# # # # $mock_inputs << "Down"
+# # # # $mock_inputs << "A3"
+# # # # $mock_inputs << "Down"
+# # # # $mock_inputs << "A5"
+# # # # $mock_inputs << "Down"
+# # # # $mock_inputs << "A7"
+# # # # $mock_inputs << "Down"
+# # # # $mock_inputs << "A9"
+# # # # $mock_inputs << "Down"
+# # #
+# # #
+# @game.take_turn
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # human = HumanPlayer.new("Alice")
 # computer = ComputerPlayer.new
