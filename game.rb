@@ -39,24 +39,41 @@ class Game
       y = @player_2.board.y_of(coord)
       if @player_2.board.fire_at(x, y)
         puts "Hit!"
-      @player_1.target_board.hits << [x, y]
-      if @player_2.board.sunk?
-        @game_over = true
-        puts "Congratulations, #{@player_1.name}!"
+
+        # puts @player_1.target_board.hits
+        @player_1.target_board.hits << [x, y]
+        # puts @player_1.target_board.hits
+
+
+        if @player_2.board.sunk?
+          @game_over = true
+          puts "Congratulations, #{@player_1.name}!"
+        end
+        return
+      else
+        puts "Miss!"
+
+
+        # puts @player_1.target_board.misses
+        @player_1.target_board.misses << [x, y]
+        # puts @player_1.target_board.misses
+
+
+        return
       end
-      return
     else
-      puts "Miss!"
-      @player_1.target_board.misses << [x, y]
-      return
-    end
-    else
-      player_1_goes = true
+      @player_1_goes = true
       x = @player_1.board.x_of(coord)
       y = @player_1.board.y_of(coord)
-    if @player_1.board.fire_at(x, y)
+      if @player_1.board.fire_at(x, y)
         puts "Hit!"
+
+
+        # puts @player_2.target_board.hits
         @player_2.target_board.hits << [x, y]
+        # puts @player_2.target_board.hits
+
+
         if @player_1.board.sunk?
           @game_over = true
           puts "Congratulations, #{@player_2.name}!"
@@ -64,9 +81,23 @@ class Game
         return
       else
         puts "Miss!"
+
+
+        # puts @player_2.target_board.misses
         @player_2.target_board.misses << [x,y]
+        # puts @player_2.target_board.misses
+
+
         return
       end
+    end
+  end
+
+  def play
+    self.welcome
+    self.place_ships
+    until @game_over == true
+      self.take_turn
     end
   end
 

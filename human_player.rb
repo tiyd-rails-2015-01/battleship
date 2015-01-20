@@ -14,6 +14,7 @@ class HumanPlayer < Player
     @board = Board.new
     @target_board = Board.new
     @ships = []
+    @target_board.is_target_board = true
   end
 
   def ships
