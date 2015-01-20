@@ -52,7 +52,14 @@ class Board
    (1..10).each do |row|
      resulting_row = "#{y_axis[row-1]} |"
      (1..10).each do |col|
-       resulting_row << "   |"
+       if has_ship_on?(col, row)
+         resulting_row << " O |"
+       else
+          resulting_row << "   |"
+        if @hit.include?([col, row])
+          resulting_row << " X |"
+        end
+       end
      end
    puts resulting_row
   end
@@ -62,6 +69,7 @@ class Board
  def display_footer
    puts "  -----------------------------------------"
  end
+
 
 
 
