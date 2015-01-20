@@ -34,6 +34,8 @@ class Ship
   def sunk?
     if @hit_points == 0
       return true
+    else
+      return false
     end
   end
 

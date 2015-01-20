@@ -1,2 +1,5 @@
 require './ship.rb'
 require './board.rb'
+require './player.rb'
+#require './HumanPlayer.rb'
+#require './computerplayer.rb'
