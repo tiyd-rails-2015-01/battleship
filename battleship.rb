@@ -1,0 +1,6 @@
+require './ship'
+require './board'
+require './player'
+require './computer_player'
+require './human_player'
+require './game'
