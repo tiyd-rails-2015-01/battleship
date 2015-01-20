@@ -8,6 +8,7 @@ class HumanPlayer < Player
   def initialize(input = "Dave")
     @board = Board.new
     @name = input
+    @target_board = Board.new
   end
 
   def ships
@@ -43,6 +44,12 @@ class HumanPlayer < Player
     x = self.board.x_of(coordinates)
     y = self.board.y_of(coordinates)
     return [x, y]
+  end
+
+  def display_game_status
+    @target_board.display
+    puts ""
+    @board.display
   end
 
 end
