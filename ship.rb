@@ -18,7 +18,7 @@ class Ship
       @placed=true
       @length.times do |i|
         if across
-          @covered_coordinates << [x+ i, y]
+          @covered_coordinates << [x + i, y]
         else
           @covered_coordinates<<[x, y + i]
         end
@@ -32,13 +32,13 @@ class Ship
     end
   end
 
-  def overlaps_with?(other_ship)
+  def overlaps_with?(other_ship, computer=false)
     overlaps=false
     @covered_coordinates.each do |square|
       x = square[0]
       y = square[1]
       if other_ship.covers?(x, y)
-        puts "Unfortunately, that ship overlaps with one of your other ships.  Please try again."
+        puts "Unfortunately, that ship overlaps with one of your other ships.  Please try again." unless computer == true
         overlaps= true
       end
     end

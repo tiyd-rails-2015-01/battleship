@@ -12,7 +12,7 @@ class Game
   def play
     self.welcome
     self.place_ships
-    unless @player1.board.sunk? || @player2.board.sunk?
+    until @player1.board.sunk? || @player2.board.sunk?
       self.take_turn
     end
     if @player1.board.sunk?
@@ -41,7 +41,6 @@ class Game
         puts "Miss!"
         @player1.shots_missed = @player2.board.misses
       end
-
     else
       coordinates= @player2.turn
       if @player1.board.fire_at(coordinates[0], coordinates[1])

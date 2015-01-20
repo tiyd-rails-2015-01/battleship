@@ -24,12 +24,9 @@ class HumanPlayer <Player
         else
           across = false
         end
-        board.place_ship(ship, x, y, across)
+        board.place_ship(ship, x, y, across, false)
         coordinates = ""
         across = ""
-        # if self.ships[ship(ship_lengths)].overlaps_with?
-        #   puts "Unfortunately, that ship overlaps with one of your other ships.  Please try again."
-        # end
       end
     end
   end
@@ -50,9 +47,7 @@ class HumanPlayer <Player
       end
       puts output_row
     end
-
     self.board.display_bottom
-
   end
 
   def display_game_status

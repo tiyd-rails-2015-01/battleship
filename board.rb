@@ -7,11 +7,11 @@ class Board
     @misses= []
   end
 
-  def place_ship(ship,x,y, across)
+  def place_ship(ship,x,y, across, computer=false)
     ship.place(x,y, across)
     conflict= false
       @ships.each do |existing_ship|
-        if existing_ship.overlaps_with?(ship)
+        if existing_ship.overlaps_with?(ship, computer)
           conflict= true
         end
       end
@@ -41,8 +41,7 @@ class Board
     if @ships.empty?
       hit = false
     else
-      @ships.each do |ship|
-        if ship.covers?(x,y)
+        if self.has_ship_on?(x, y)
           hit = true
             if @hits.include?(temp_hits)
               return hit = false
@@ -55,7 +54,6 @@ class Board
           end
         end
         return hit
-    end
   end
 
   def display_header
