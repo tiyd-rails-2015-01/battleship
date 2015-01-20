@@ -1,8 +1,14 @@
 require './player'
-
+require './board'
+def get_user_input
+  gets.chomp
+end
 class HumanPlayer<Player
-  def initialize(name)
-
+  attr_accessor :name, :board
+  def initialize(input = "Dave")
+    @name = input
+    @board = Board.new
   end
+
 
 end
