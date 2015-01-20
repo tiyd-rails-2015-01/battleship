@@ -13,9 +13,7 @@ class ComputerPlayer < Player
 
   def ships
   end
-
-  def length
-  end
+ 
 
 
 end
