@@ -1,6 +1,7 @@
 # require './board'
 
 class Ship
+  attr_accessor :placed
   def initialize(length)
     @length = length
     @coords = []
@@ -41,7 +42,8 @@ class Ship
         x = coord[0]
         y = coord[1]
       if ship.covers?(x, y)
-        return true
+#        print "Unfortunately, that ship overlaps with one of your other ships.  Please try again.\n"
+        overlapping = true
       end
     end
     return overlapping

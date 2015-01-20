@@ -1,5 +1,5 @@
 # require './player'
-require './board'
+#require './board'
 # require './ship'
 
 def get_user_input
@@ -7,7 +7,7 @@ def get_user_input
 end
 
 class HumanPlayer < Player
-#  attr_accessor :name, :board
+ attr_accessor :name, :board
   def initialize(name = "Dave")
     @name = name
     @board = Board.new
@@ -19,10 +19,22 @@ class HumanPlayer < Player
   # end
 
   def place_ships(lengths)
-    print "#{@name}, where would you like to place a ship of length 2?\nAcross or Down?\n"+
-          "#{@name}, where would you like to place a ship of length 5?\nAcross or Down?\n"
-    lengths.each do |l|
-      @ships << Ship.new(l)
+    make_ships(lengths)
+    @ships.each do |s|
+      until s.placed
+        print "#{@name}, where would you like to place a ship of length #{s.length}?\n"
+        coords = get_user_input
+        c = @board.x_of(coords)
+        r = @board.y_of(coords)
+        print "Across or Down?\n"
+        h_or_v = get_user_input
+        if h_or_v == "Across"
+          h_or_v = true
+        else
+          h_or_v = false
+        end
+        board.place_ship(s, c, r, h_or_v)
+      end
     end
   end
 end
