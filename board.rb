@@ -1,17 +1,14 @@
-require './ship'
-
 class Board
   LETTERS = ('A'..'J').to_a
   def initialize
     @fleet = []
     @hits = []
-    @misses = []
   end
 
   def has_ship_on?(x, y)
     ship_on = false
-    @fleet.each do |ship|
-      if ship.covers?(x, y)
+    @fleet.each do |s|
+      if s.covers?(x, y)
         ship_on = true
       end
     end
@@ -30,10 +27,10 @@ class Board
 
   def fire_at(x, y)
     if @fleet.empty? || @hits.include?([x, y])
-      hit = false
+      return false
     else
-      @fleet.each do |ship|
-        if ship.fire_at(x, y)
+      @fleet.each do |s|
+        if s.fire_at(x, y)
           @hits << [x, y]
           return true
         end
@@ -48,14 +45,14 @@ class Board
   end
 
   def display
+    display_header
     letters = ('A'..'J').to_a
-    self.display_header
     (1..10).each do |r|
       output_row = "#{letters[r-1]} |"
       (1..10).each do |c|
         if @hits.include? [c, r]
           output_row << " X |"
-        elsif self.has_ship_on?(c,r)
+        elsif has_ship_on?(c, r)
           output_row << " O |"
         else
           output_row << "   |"
@@ -63,7 +60,7 @@ class Board
       end
       puts output_row
     end
-    self.display_footer
+    display_footer
   end
 
   def display_footer

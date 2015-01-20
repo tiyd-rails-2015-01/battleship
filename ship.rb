@@ -41,7 +41,7 @@ class Ship
         x = coord[0]
         y = coord[1]
       if ship.covers?(x, y)
-        overlapping = true
+        return true
       end
     end
     return overlapping
@@ -51,9 +51,8 @@ class Ship
     hit = false
     if @coords.include? [x, y]
       hit = true
-      @hits << [x,y]
+      @hits << [x, y]
     end
-    return hit
   end
 
   def sunk?
