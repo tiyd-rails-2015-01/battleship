@@ -7,6 +7,7 @@ class ComputerPlayer < Player
     super
     @computer_name = "HAL 9000"
     @computer_fleet = []
+    @board = Board.new
 
   end
 
@@ -15,15 +16,15 @@ class ComputerPlayer < Player
   end
 
   def ships
-    board.fleet
+    @computer_fleet
   end
 
 
-  def place_ships(lengths)
+  def place_ships(hitpoints)
     puts "HAL 9000 has placed his ships.\n"
-    lengths.each do |l|
-      @computer_fleet << Ship.new(l)
-    end
+    # lengths.each do |l|
+    #   @computer_fleet << Ship.new(l)
+    @computer_fleet = hitpoints.map {|hp| Ship.new(hp)}
   end
 
   # def place_ship(l)

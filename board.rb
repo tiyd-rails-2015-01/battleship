@@ -12,15 +12,22 @@ class Board
 
   end
 
+  # def has_ship_on?(x, y)
+  #   ship_on = false
+  #   @fleet.each do |ship|
+  #     if ship.covers?(x, y)
+  #       ship_on = true
+  #     end
+  #   end
+  #   return ship_on
+  # end
   def has_ship_on?(x, y)
-    ship_on = false
-    @fleet.each do |ship|
-      if ship.covers?(x, y)
-        ship_on = true
-      end
+    @fleet.any? do |ship|
+      ship.covers?(x, y)
     end
-    return ship_on
   end
+
+
 
   def place_ship(ship, x, y, direction)
     ship.place(x, y, direction)
@@ -82,23 +89,28 @@ class Board
   def sunk?
     if @fleet.empty?
       return false
+    @fleet.all? {|s| s.sunk?}
     end
-    @fleet.each do |ship|
-      if ship.sunk? == false
-        return false
-      else
-        return true
-      end
-    end
-    
-  #   if @shots_taken.empty?
+  # def sunk?
+  #   if @fleet.empty?
   #     return false
   #   end
-  #   if @shots_taken.sort == @cells_with_ships
-  #     return true
-  #   else
-  #     return false
+  #   @fleet.each do |ship|
+  #     if ship.sunk? == false
+  #       return false
+  #     else
+  #       return true
+  #     end
   #   end
+
+    if @shots_taken.empty?
+      return false
+    end
+    if @shots_taken.sort == @cells_with_ships
+      return true
+    else
+      return false
+    end
   end
 
 end

@@ -11,10 +11,10 @@ class HumanPlayer < Player
 
   def initialize(player_name = "Dave")
     @board = Board.new
-    @name = player_name
+    @player_name = player_name
   end
 
   def name
-    return @name
+    return @player_name
   end
 end
